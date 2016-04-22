@@ -47,6 +47,10 @@ AppAsset::register($this);
                     'label' => Yii::t('app', 'Languages'),
                     'url'   => ['/language']
                 ],
+                [
+                    'label' => Yii::t('app', 'Projects'),
+                    'url'   => ['/project']
+                ],
             ],
             //'visible'   => Yii::$app->getUser()->can('Administrator')
         ],
