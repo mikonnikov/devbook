@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m160422_081912_Category extends Migration
+class m160422_085812_Language extends Migration
 {
     public function safeUp()
     {
@@ -11,15 +11,14 @@ class m160422_081912_Category extends Migration
         $connection = Yii::$app->db;
         $transaction = $connection->beginTransaction();
         try {
-            $this->createTable('{{%category}}',
+            $this->createTable('{{%language}}',
                 [
-                    'id' => Schema::TYPE_PK . " COMMENT 'Category ID'",
-                    'name' => Schema::TYPE_STRING . "(500) NOT NULL COMMENT 'Category name'",
-                    'parent_id' => Schema::TYPE_INTEGER . "(11) COMMENT 'Parent category'",
+                    'id' => Schema::TYPE_PK . " COMMENT 'Language ID'",
+                    'name' => Schema::TYPE_STRING . "(100) COMMENT 'Language name'",
+                    'version' => Schema::TYPE_STRING . "(100) COMMENT 'Version'",
+                    'url' => Schema::TYPE_STRING . "(500) COMMENT 'Official page'",
                 ], $tableOptions);
 
-            $this->createIndex('parent_id', '{{%category}}', 'parent_id', 0);
-            $this->addForeignKey('fk_category_parent_id', '{{%category}}', 'parent_id', 'category', 'id');
             $transaction->commit();
         } catch (Exception $e) {
             echo 'Catch Exception ' . $e->getMessage() . ' and rollBack this';
@@ -32,8 +31,7 @@ class m160422_081912_Category extends Migration
         $connection = Yii::$app->db;
         $transaction = $connection->beginTransaction();
         try {
-            $this->dropForeignKey('fk_category_parent_id', '{{%category}}');
-            $this->dropTable('{{%category}}');
+            $this->dropTable('{{%language}}');
             $transaction->commit();
         } catch (Exception $e) {
             echo 'Catch Exception ' . $e->getMessage() . ' and rollBack this';

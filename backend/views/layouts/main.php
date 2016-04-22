@@ -37,11 +37,15 @@ AppAsset::register($this);
 
     $menuItems = [
         ['label'    => 'Home', 'url' => ['/site/index']],
-        ['label'    => 'Settings',
+        ['label'    => 'Dictionaries',
             'items' => [
                 [
-                    'label' => 'Categories',
+                    'label' => Yii::t('app', 'Categories'),
                     'url'   => ['/category']
+                ],
+                [
+                    'label' => Yii::t('app', 'Languages'),
+                    'url'   => ['/language']
                 ],
             ],
             //'visible'   => Yii::$app->getUser()->can('Administrator')
