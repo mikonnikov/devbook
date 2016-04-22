@@ -51,6 +51,10 @@ AppAsset::register($this);
                     'label' => Yii::t('app', 'Projects'),
                     'url'   => ['/project']
                 ],
+                [
+                    'label' => Yii::t('app', 'Meta tags'),
+                    'url'   => ['/meta']
+                ],
             ],
             //'visible'   => Yii::$app->getUser()->can('Administrator')
         ],
@@ -86,8 +90,8 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; mishaikon <?= date('Y') ?></p>
-
+        <p class="pull-left">&copy; ЗАО "МегаЛабс" 2016, version 1.10.2, <?= date('Y') ?></p>
+        <!--p class="pull-left">&copy; mishaikon <?= date('Y') ?></p-->
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
