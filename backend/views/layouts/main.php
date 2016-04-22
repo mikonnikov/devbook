@@ -58,6 +58,7 @@ AppAsset::register($this);
             ],
             //'visible'   => Yii::$app->getUser()->can('Administrator')
         ],
+        ['label' => 'Questions', 'url' => ['/question']],
     ];
 
     if (Yii::$app->user->isGuest) {
