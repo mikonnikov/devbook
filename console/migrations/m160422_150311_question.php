@@ -12,15 +12,16 @@ class m160422_150311_question extends Migration
         $this->createTable(
             '{{%question}}',
             [
-                'id'=> Schema::TYPE_INTEGER."(11) NOT NULL",
-                'title'=> Schema::TYPE_STRING."(500) NOT NULL COMMENT 'Question title'",
-                'descr'=> Schema::TYPE_TEXT." COMMENT 'Question text'",
-                'project_id'=> Schema::TYPE_INTEGER."(11) COMMENT 'Related project'",
-                'category_id'=> Schema::TYPE_INTEGER."(11) COMMENT 'Category'",
-                'language_id'=> Schema::TYPE_INTEGER."(11) COMMENT 'Programming language'",
-                'user_id'=> Schema::TYPE_INTEGER."(11) COMMENT 'Question author'",
-                'add_time'=> Schema::TYPE_DATETIME." COMMENT 'Add time'",
-                'edit_time'=> Schema::TYPE_DATETIME."",
+                'id'            => Schema::TYPE_PK." COMMENT 'ID'",
+                'title'         => Schema::TYPE_STRING."(500) NOT NULL COMMENT 'Question title'",
+                'descr'         => Schema::TYPE_TEXT." COMMENT 'Question text'",
+                'project_id'    => Schema::TYPE_INTEGER."(11) COMMENT 'Related project'",
+                'category_id'   => Schema::TYPE_INTEGER."(11) COMMENT 'Category'",
+                'language_id'   => Schema::TYPE_INTEGER."(11) COMMENT 'Programming language'",
+                'user_id'       => Schema::TYPE_INTEGER."(11) COMMENT 'Question author'",
+                'add_time'      => Schema::TYPE_DATETIME." COMMENT 'Add time'",
+                'edit_time'     => Schema::TYPE_DATETIME."",
+                'answer'        => Schema::TYPE_TEXT." COMMENT 'Authors answer'",
                 ],
             $tableOptions
         );

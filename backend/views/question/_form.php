@@ -18,6 +18,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'descr')->textarea(['rows' => 6]) ?>
 
+    <?= $form->field($model, 'answer')->textarea(['rows' => 10]) ?>
+
     <?= $form->field($model, 'project_id')->textInput() ?>
 
     <?= $form->field($model, 'category_id')->textInput() ?>
@@ -25,6 +27,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'language_id')->textInput() ?>
 
     <?= $form->field($model, 'user_id')->textInput() ?>
+    <?php //echo CHtml::hiddenField('user_id', $user->id);?>
 
     <?= $form->field($model, 'add_time')->textInput() ?>
 
