@@ -68,9 +68,35 @@ use yii\widgets\ActiveForm;
     )
     ?>
 
-    <?= $form->field($model, 'add_time')->textInput() ?>
+    <?= $form->field($model, 'add_time')->widget(
+        \kartik\datetime\DateTimePicker::className(),
+        [
+            'name'          => 'add_time',
+            'options'       => ['placeholder' => Yii::t('app', 'Select date')],
+            'convertFormat' => true,
+            'pluginOptions' => [
+                'format'    => 'yyyy-MM-dd HH:i:ss',
+                'autoclose' => true,
+                'todayHighlight' => true
+            ]
+        ]
+    )
+    ?>
 
-    <?= $form->field($model, 'edit_time')->textInput() ?>
+    <?= $form->field($model, 'edit_time')->widget(
+        \kartik\datetime\DateTimePicker::className(),
+        [
+            'name'          => 'edit_time',
+            'options'       => ['placeholder' => Yii::t('app', 'Select date')],
+            'convertFormat' => true,
+            'pluginOptions' => [
+                'format'    => 'yyyy-MM-dd HH:i:ss',
+                'autoclose' => true,
+                'todayHighlight' => true
+            ]
+        ]
+    )
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
