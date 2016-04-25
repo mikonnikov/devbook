@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Question;
 use yii\data\ActiveDataProvider;
+use common\models\QuestionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,11 +36,11 @@ class QuestionController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Question::find(),
-        ]);
+        $searchModel = new QuestionSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
