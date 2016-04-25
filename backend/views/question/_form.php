@@ -20,6 +20,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'answer')->textarea(['rows' => 10]) ?>
 
+    <?= $form->field($model, 'answer_url')->textInput(['maxlength' => true]) ?>
+
     <?=
     $form->field($model, 'project_id')->widget(
         \kartik\select2\Select2::className(),
@@ -68,7 +70,8 @@ use yii\widgets\ActiveForm;
     )
     ?>
 
-    <?= $form->field($model, 'add_time')->widget(
+    <?= $form->field($model, 'add_time')->hiddenInput(['value' => ($model->add_time ? $model->add_time : date("Y-m-d H:i:s"))])->label(false);  ?>
+    <?php /*print $form->field($model, 'add_time')->widget(
         \kartik\datetime\DateTimePicker::className(),
         [
             'name'          => 'add_time',
@@ -80,10 +83,11 @@ use yii\widgets\ActiveForm;
                 'todayHighlight' => true
             ]
         ]
-    )
+    ) */
     ?>
 
-    <?= $form->field($model, 'edit_time')->widget(
+    <?= $form->field($model, 'edit_time')->hiddenInput(['value' => date("Y-m-d H:i:s")])->label(false);  ?>
+    <?php /*print $form->field($model, 'edit_time')->widget(
         \kartik\datetime\DateTimePicker::className(),
         [
             'name'          => 'edit_time',
@@ -95,7 +99,7 @@ use yii\widgets\ActiveForm;
                 'todayHighlight' => true
             ]
         ]
-    )
+    )*/
     ?>
 
     <div class="form-group">

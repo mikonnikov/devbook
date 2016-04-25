@@ -28,11 +28,11 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name'],  'required'],
             [['descr'], 'string'],
-            [['name'], 'string', 'max' => 255],
-            [['url'], 'string', 'max' => 500],
-            [['name'], 'unique'],
+            [['name'],  'string', 'max' => 255],
+            [['url'],   'string', 'max' => 500],
+            [['name'],  'unique'],
         ];
     }
 

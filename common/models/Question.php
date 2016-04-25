@@ -16,6 +16,9 @@ use Yii;
  * @property integer $user_id
  * @property string $add_time
  * @property string $edit_time
+ * @property string $answer
+ * @property string $error
+ * @property string $answer_url
  *
  * @property User $user
  * @property Project $project
@@ -41,6 +44,8 @@ class Question extends \yii\db\ActiveRecord
             [['id', 'title'], 'required'],
             [['id', 'project_id', 'category_id', 'language_id', 'user_id'], 'integer'],
             [['descr'], 'string'],
+            [['answer'], 'string'],
+            [['answer_url'], 'string'],
             [['add_time', 'edit_time'], 'safe'],
             [['title'], 'string', 'max' => 500],
             [['error'], 'string', 'max' => 500],
@@ -49,6 +54,7 @@ class Question extends \yii\db\ActiveRecord
             [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::className(), 'targetAttribute' => ['project_id' => 'id']],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Language::className(), 'targetAttribute' => ['language_id' => 'id']],
+            [['answer_url'], 'string', 'max' => 500],
         ];
     }
 
@@ -68,6 +74,8 @@ class Question extends \yii\db\ActiveRecord
             'user_id'       => Yii::t('app', 'Question author'),
             'add_time'      => Yii::t('app', 'Add time'),
             'edit_time'     => Yii::t('app', 'Edit Time'),
+            'answer'        => Yii::t('app', 'Authors answer'),
+            'answer_url'    => Yii::t('app', 'Solution URL'),
         ];
     }
 
