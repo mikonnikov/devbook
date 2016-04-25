@@ -35,8 +35,11 @@ class CategoryController extends Controller
      */
     public function actionIndex()
     {
+        $params = Yii::$app->request->queryParams;
+        $parent_id = (isset($params['parent_id']) ? $params['parent_id'] : null);
+
         $dataProvider = new ActiveDataProvider([
-            'query' => Category::find(),
+            'query' => Category::find()->where(['parent_id' => $parent_id]),
         ]);
 
         return $this->render('index', [

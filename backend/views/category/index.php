@@ -21,7 +21,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
             'id',
-            'name',
+            [
+                'attribute' => 'name',
+                'value' => function($model) {
+                    return Html::a($model->name, ['/category', 'parent_id' => $model->id ]);
+                },
+                'format' => 'raw',
+                'label'     => 'Parent category',
+            ],
             [
                 'attribute' => 'parent.name',
                 'label'     => 'Parent category',
