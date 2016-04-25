@@ -22,15 +22,16 @@ class m160422_150311_question extends Migration
                 'add_time'      => Schema::TYPE_DATETIME." COMMENT 'Add time'",
                 'edit_time'     => Schema::TYPE_DATETIME."",
                 'answer'        => Schema::TYPE_TEXT." COMMENT 'Authors answer'",
-                ],
+                'error'         => Schema::TYPE_TEXT." COMMENT 'Error text'",
+            ],
             $tableOptions
         );
 
         $this->createIndex('question_id_uindex', '{{%question}}','id',1);
-        $this->createIndex('fk_question', '{{%question}}','project_id',0);
-        $this->createIndex('fk_category', '{{%question}}','category_id',0);
-        $this->createIndex('fk_language', '{{%question}}','language_id',0);
-        $this->createIndex('fk_user', '{{%question}}','user_id',0);
+        $this->createIndex('fk_question',        '{{%question}}','project_id',0);
+        $this->createIndex('fk_category',        '{{%question}}','category_id',0);
+        $this->createIndex('fk_language',        '{{%question}}','language_id',0);
+        $this->createIndex('fk_user',            '{{%question}}','user_id',0);
     }
 
     public function safeDown()

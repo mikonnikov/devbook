@@ -43,6 +43,7 @@ class Question extends \yii\db\ActiveRecord
             [['descr'], 'string'],
             [['add_time', 'edit_time'], 'safe'],
             [['title'], 'string', 'max' => 500],
+            [['error'], 'string', 'max' => 500],
             [['id'], 'unique'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::className(), 'targetAttribute' => ['project_id' => 'id']],
@@ -57,15 +58,16 @@ class Question extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'title' => Yii::t('app', 'Question title'),
-            'descr' => Yii::t('app', 'Question text'),
-            'project_id' => Yii::t('app', 'Related project'),
-            'category_id' => Yii::t('app', 'Category'),
-            'language_id' => Yii::t('app', 'Programming language'),
-            'user_id' => Yii::t('app', 'Question author'),
-            'add_time' => Yii::t('app', 'Add time'),
-            'edit_time' => Yii::t('app', 'Edit Time'),
+            'id'            => Yii::t('app', 'ID'),
+            'title'         => Yii::t('app', 'Question title'),
+            'error'         => Yii::t('app', 'Error text'),
+            'descr'         => Yii::t('app', 'Question text'),
+            'project_id'    => Yii::t('app', 'Related project'),
+            'category_id'   => Yii::t('app', 'Category'),
+            'language_id'   => Yii::t('app', 'Programming language'),
+            'user_id'       => Yii::t('app', 'Question author'),
+            'add_time'      => Yii::t('app', 'Add time'),
+            'edit_time'     => Yii::t('app', 'Edit Time'),
         ];
     }
 

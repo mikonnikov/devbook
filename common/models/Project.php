@@ -48,4 +48,12 @@ class Project extends \yii\db\ActiveRecord
             'url' => Yii::t('app', 'Url'),
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function getProjectsList()
+    {
+        return \yii\helpers\ArrayHelper::map(\common\models\Project::find()->all(), 'id', 'name');
+    }
 }

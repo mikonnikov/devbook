@@ -66,11 +66,10 @@ class Category extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return array
      */
     public function getCategoriesList()
     {
-        $cat = \yii\helpers\ArrayHelper::map(\common\models\Category::find()->all(), 'id', 'name');
-        return $cat;
+        return \yii\helpers\ArrayHelper::map(\common\models\Category::find()->all(), 'id', 'name');
     }
 }

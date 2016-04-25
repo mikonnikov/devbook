@@ -185,4 +185,12 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+    /**
+     * @return array
+     */
+    public function getUsersList()
+    {
+        return \yii\helpers\ArrayHelper::map(\common\models\User::find()->all(), 'id', 'username');
+    }
 }

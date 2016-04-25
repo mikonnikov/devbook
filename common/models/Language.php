@@ -45,4 +45,12 @@ class Language extends \yii\db\ActiveRecord
             'url' => Yii::t('app', 'Official page'),
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function getLanguagesList()
+    {
+        return \yii\helpers\ArrayHelper::map(\common\models\Language::find()->all(), 'id', 'name');
+    }
 }
