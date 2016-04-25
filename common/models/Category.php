@@ -64,4 +64,13 @@ class Category extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Category::className(), ['parent_id' => 'id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategoriesList()
+    {
+        $cat = \yii\helpers\ArrayHelper::map(\common\models\Category::find()->all(), 'id', 'name');
+        return $cat;
+    }
 }

@@ -14,7 +14,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'parent_id')->textInput() ?>
+    <?=
+    $form->field($model, 'parent_id')->widget(
+        \kartik\select2\Select2::className(),
+        [
+            'model'     => $model,
+            'attribute' => 'parent_id',
+            'data'      => $model->getCategoriesList(),
+            'options'   => ['multiple' => false, 'placeholder' => 'Select parent category']
+        ]
+    )
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
