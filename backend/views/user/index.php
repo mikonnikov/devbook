@@ -29,7 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
             //'password_hash',
             //'password_reset_token',
             'email:email',
-            'status',
+            [
+                'label' => 'Active',
+                'attribute' => 'status',
+                'value' => function($model) {
+                    return ($model->status == $model::STATUS_ACTIVE ? 'Yes' : 'No');
+                },
+                'format' => 'raw',
+            ],
             'created_at:datetime',
             'updated_at:datetime',
             ['class' => 'yii\grid\ActionColumn'],

@@ -44,12 +44,12 @@ class Project extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'    => Yii::t('app', 'Project ID'),
-            'name'  => Yii::t('app', 'Project name'),
-            'descr' => Yii::t('app', 'Description'),
-            'url'   => Yii::t('app', 'Local Url'),
-            'url'   => Yii::t('app', 'Dev Url'),
-            'url'   => Yii::t('app', 'Prod Url'),
+            'id'        => Yii::t('app', 'Project ID'),
+            'name'      => Yii::t('app', 'Project name'),
+            'descr'     => Yii::t('app', 'Description'),
+            'url'       => Yii::t('app', 'Local Url'),
+            'url_dev'   => Yii::t('app', 'Dev Url'),
+            'url_prod'  => Yii::t('app', 'Prod Url'),
         ];
     }
 

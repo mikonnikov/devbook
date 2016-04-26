@@ -9,6 +9,7 @@ use yii\grid\GridView;
 $this->title = Yii::t('app', 'Questions');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="question-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -25,9 +26,27 @@ $this->params['breadcrumbs'][] = $this->title;
             //['class' => 'yii\grid\SerialColumn'],
             'id',
             'title',
-            'error',
-            'descr:ntext',
-            'answer:ntext',
+            [
+                'label' => 'Error text',
+                'value' => function($model) {
+                    return "<span title='".htmlspecialchars($model->error)."'>".htmlspecialchars(substr($model->error, 0, 30))."</span>";
+                },
+                'format' => 'html',
+            ],
+            [
+                'label' => 'Problem description',
+                'value' => function($model) {
+                    return "<span title='".htmlspecialchars($model->descr)."'>".htmlspecialchars(substr($model->descr, 0, 30))."</span>";
+                },
+                'format' => 'raw',
+            ],
+            [
+                'label' => 'Authors solution',
+                'value' => function($model) {
+                    return "<span title='".htmlspecialchars($model->answer)."'>".htmlspecialchars(substr($model->answer, 0, 30))."</span>";
+                },
+                'format' => 'raw',
+            ],
             [
                 'label'     => 'Project',
                 'value' => function($model) {
