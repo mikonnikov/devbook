@@ -28,11 +28,13 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'],  'required'],
-            [['descr'], 'string'],
-            [['name'],  'string', 'max' => 255],
-            [['url'],   'string', 'max' => 500],
-            [['name'],  'unique'],
+            [['name'],      'required'],
+            [['descr'],     'string'],
+            [['name'],      'string', 'max' => 255],
+            [['url'],       'string', 'max' => 200],
+            [['url_dev'],   'string', 'max' => 200],
+            [['url_prod'],  'string', 'max' => 200],
+            [['name'],      'unique'],
         ];
     }
 
@@ -42,10 +44,12 @@ class Project extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'Project ID'),
-            'name' => Yii::t('app', 'Project name'),
+            'id'    => Yii::t('app', 'Project ID'),
+            'name'  => Yii::t('app', 'Project name'),
             'descr' => Yii::t('app', 'Description'),
-            'url' => Yii::t('app', 'Url'),
+            'url'   => Yii::t('app', 'Local Url'),
+            'url'   => Yii::t('app', 'Dev Url'),
+            'url'   => Yii::t('app', 'Prod Url'),
         ];
     }
 

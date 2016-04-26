@@ -41,7 +41,7 @@ class Question extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'title'], 'required'],
+            [['title'], 'required'],
             [['id', 'project_id', 'category_id', 'language_id', 'user_id'], 'integer'],
             [['descr'], 'string'],
             [['answer'], 'string'],
@@ -49,7 +49,6 @@ class Question extends \yii\db\ActiveRecord
             [['add_time', 'edit_time'], 'safe'],
             [['title'], 'string', 'max' => 500],
             [['error'], 'string', 'max' => 500],
-            [['id'], 'unique'],
             [['user_id'],     'exist', 'skipOnError' => true, 'targetClass' => User::className(),     'targetAttribute' => ['user_id'     => 'id']],
             [['project_id'],  'exist', 'skipOnError' => true, 'targetClass' => Project::className(),  'targetAttribute' => ['project_id'  => 'id']],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],

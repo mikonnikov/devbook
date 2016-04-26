@@ -28,10 +28,34 @@ $this->params['breadcrumbs'][] = $this->title;
             'error',
             'descr:ntext',
             'answer:ntext',
-            'project.name',
-            'category.name',
-            'language.name',
-            'user.username',
+            [
+                'label'     => 'Project',
+                'value' => function($model) {
+                    return Html::a($model->project->name, ['/project/view', 'id' => $model->project_id ]);
+                },
+                'format' => 'raw',
+            ],
+            [
+                'label'     => 'Category',
+                'value' => function($model) {
+                    return Html::a($model->category->name, ['/category/view', 'id' => $model->category_id ]);
+                },
+                'format' => 'raw',
+            ],
+            [
+                'label'     => 'Language',
+                'value' => function($model) {
+                    return Html::a($model->language->name, ['/language/view', 'id' => $model->language_id ]);
+                },
+                'format' => 'raw',
+            ],
+            [
+                'label'     => 'Author',
+                'value' => function($model) {
+                    return Html::a($model->user->username, ['/user/view', 'id' => $model->user_id ]);
+                },
+                'format' => 'raw',
+            ],
             'add_time',
             'edit_time',
             ['class' => 'yii\grid\ActionColumn'],

@@ -32,6 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'descr:ntext',
             'url:url',
+            'url_dev:url',
+            'url_prod:url',
         ],
     ]) ?>
 

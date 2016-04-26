@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id')->textInput() ?>
+    <?= $form->field($model, 'id')->hiddenInput()->label(false); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
@@ -60,7 +60,7 @@ use yii\widgets\ActiveForm;
     )
     ?>
 
-    <?=
+    <?= ($model->user_id ?
     $form->field($model, 'user_id')->widget(
         \kartik\select2\Select2::className(),
         [
@@ -69,7 +69,7 @@ use yii\widgets\ActiveForm;
             'data'      => \common\models\User::getUsersList(),
             'options'   => ['multiple' => false, 'placeholder' => 'Select user'],
         ]
-    )
+    ) : $form->field($model, 'user_id')->hiddenInput(['value' => Yii::$app->user->identity->getId()])->label(false))
     ?>
 
     <?= $form->field($model, 'add_time')->hiddenInput(['value' => ($model->add_time ? $model->add_time : date("Y-m-d H:i:s"))])->label(false);  ?>
