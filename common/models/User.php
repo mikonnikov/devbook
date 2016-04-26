@@ -23,6 +23,8 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
+    public $password        = "";
+
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
 
@@ -192,5 +194,21 @@ class User extends ActiveRecord implements IdentityInterface
     public function getUsersList()
     {
         return \yii\helpers\ArrayHelper::map(\common\models\User::find()->all(), 'id', 'username');
+    }
+
+    /**
+     * Save inputed/changed password
+     * @param bool $insert
+     * @return bool
+     * @source http://yiiframework.ru/forum/viewtopic.php?t=29105
+     */
+    public function beforeSave($insert)
+    {
+        if ($this->password!='') {
+            $this->setPassword($this->password);
+            $this->generateAuthKey();
+        }
+
+        return parent::beforeSave($insert);
     }
 }
