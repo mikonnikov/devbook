@@ -50,11 +50,11 @@ class Question extends \yii\db\ActiveRecord
             [['title'], 'string', 'max' => 500],
             [['error'], 'string', 'max' => 500],
             [['id'], 'unique'],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
-            [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::className(), 'targetAttribute' => ['project_id' => 'id']],
+            [['user_id'],     'exist', 'skipOnError' => true, 'targetClass' => User::className(),     'targetAttribute' => ['user_id'     => 'id']],
+            [['project_id'],  'exist', 'skipOnError' => true, 'targetClass' => Project::className(),  'targetAttribute' => ['project_id'  => 'id']],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Language::className(), 'targetAttribute' => ['language_id' => 'id']],
-            [['answer_url'], 'string', 'max' => 500],
+            [['answer_url'],  'string', 'max' => 500],
         ];
     }
 

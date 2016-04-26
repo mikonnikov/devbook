@@ -42,6 +42,7 @@ class CategoryController extends Controller
             'query' => Category::find()->where(['parent_id' => $parent_id]),
         ]);
 
+
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
@@ -69,7 +70,7 @@ class CategoryController extends Controller
         $model = new Category();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'parent_id' => $model->parent_id]);
             //return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -89,7 +90,7 @@ class CategoryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'parent_id' => $model->parent_id]);
             //return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -108,7 +109,8 @@ class CategoryController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        //return $this->redirect(['index']);
+        return $this->redirect(['index', 'parent_id' => $model->parent_id]);
     }
 
     /**

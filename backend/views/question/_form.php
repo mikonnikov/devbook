@@ -12,6 +12,8 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'id')->textInput() ?>
+
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'error')->textInput(['maxlength' => true]) ?>
@@ -65,7 +67,7 @@ use yii\widgets\ActiveForm;
             'model'     => $model,
             'attribute' => 'user_id',
             'data'      => \common\models\User::getUsersList(),
-            'options'   => ['multiple' => false, 'placeholder' => 'Select user']
+            'options'   => ['multiple' => false, 'placeholder' => 'Select user'],
         ]
     )
     ?>

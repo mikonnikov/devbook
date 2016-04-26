@@ -16,22 +16,27 @@ $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['index' ]];
     <p>
         <?= Html::a(Yii::t('app', 'Create Category'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+<?php Pjax::begin(); ?>
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
             'id',
             [
                 'attribute' => 'name',
-                'value' => function($model) {
-                    return Html::a($model->name, ['/category', 'parent_id' => $model->id ]);
-                },
-                'format' => 'raw',
-                'label'     => 'Parent category',
+                'format'    => 'raw',
+                'label'     => 'Category name',
             ],
             [
                 'attribute' => 'parent.name',
                 'label'     => 'Parent category',
+            ],
+            [
+                'label'     => 'Child categories',
+                'value' => function($model) {
+                    return Html::a(implode(', ', $model->getChilds()), ['/category', 'parent_id' => $model->id ]);
+                },
+                'format' => 'raw',
             ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
