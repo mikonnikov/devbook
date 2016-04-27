@@ -50,28 +50,28 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label'     => 'Project',
                 'value' => function($model) {
-                    return Html::a($model->project->name, ['/project/view', 'id' => $model->project_id ]);
+                    return (isset($model->project) ? Html::a($model->project->name, ['/project/view', 'id' => $model->project_id ]) : '-');
                 },
                 'format' => 'raw',
             ],
             [
                 'label'     => 'Category',
                 'value' => function($model) {
-                    return Html::a($model->category->name, ['/category/view', 'id' => $model->category_id ]);
+                    return (isset($model->category) ? Html::a($model->category->name, ['/category/view', 'id' => $model->category_id ]) : '-');
                 },
                 'format' => 'raw',
             ],
             [
                 'label'     => 'Language',
                 'value' => function($model) {
-                    return Html::a($model->language->name, ['/language/view', 'id' => $model->language_id ]);
+                    return (isset($model->language) ? Html::a($model->language->name, ['/language/view', 'id' => $model->language_id ]) : '-');
                 },
                 'format' => 'raw',
             ],
             [
                 'label'     => 'Author',
                 'value' => function($model) {
-                    return Html::a($model->user->username, ['/user/view', 'id' => $model->user_id ]);
+                    return (isset($model->user) ? Html::a($model->user->username, ['/user/view', 'id' => $model->user_id ]) : '-');
                 },
                 'format' => 'raw',
             ],

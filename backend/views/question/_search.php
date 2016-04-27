@@ -30,6 +30,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'descr') ?>
 
+    <?= $form->field($model, 'error') ?>
+
     <?=
     $form->field($model, 'project_id')->widget(
         \kartik\select2\Select2::className(),
