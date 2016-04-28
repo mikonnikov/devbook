@@ -72,6 +72,10 @@ class UserController extends Controller
                 $model->setPassword($post['User']['password']);
                 $model->generateAuthKey();
             }
+
+            $model->setAttribute('username', $post['User']['username']);
+            $model->setAttribute('email', $post['User']['email']);
+
             if($model->save()) {
                 return $this->redirect(['index']);
                 //return $this->redirect(['view', 'id' => $model->id]);
@@ -100,6 +104,9 @@ class UserController extends Controller
                 $model->setPassword($post['User']['password']);
                 $model->generateAuthKey();
             }
+
+            $model->setAttribute('username', $post['User']['username']);
+            $model->setAttribute('email', $post['User']['email']);
 
             if($model->save()) {
                 return $this->redirect(['index']);
