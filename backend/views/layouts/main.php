@@ -59,6 +59,7 @@ AppAsset::register($this);
             //'visible'   => Yii::$app->getUser()->can('Administrator')
         ],
         ['label' => 'Questions', 'url' => ['/question']],
+        ['label' => 'Answers', 'url' => ['/answer']],
         ['label' => 'Users', 'url' => ['/user']],
     ];
 
