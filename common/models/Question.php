@@ -19,6 +19,8 @@ use Yii;
  * @property string $answer
  * @property string $error
  * @property string $answer_url
+ * @property string $ticket
+ * @property boolean $solved
  *
  * @property User $user
  * @property Project $project
@@ -46,14 +48,18 @@ class Question extends \yii\db\ActiveRecord
             [['descr'], 'string'],
             [['answer'], 'string'],
             [['answer_url'], 'string'],
+            [['ticket'], 'string'],
             [['add_time', 'edit_time'], 'safe'],
-            [['title'], 'string', 'max' => 500],
-            [['error'], 'string', 'max' => 500],
+            [['title'], 'string',  'max' => 500],
+            [['error'], 'string',  'max' => 500],
+            [['ticket'], 'string', 'max' => 500],
             [['user_id'],     'exist', 'skipOnError' => true, 'targetClass' => User::className(),     'targetAttribute' => ['user_id'     => 'id']],
             [['project_id'],  'exist', 'skipOnError' => true, 'targetClass' => Project::className(),  'targetAttribute' => ['project_id'  => 'id']],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Language::className(), 'targetAttribute' => ['language_id' => 'id']],
             [['answer_url'],  'string', 'max' => 500],
+            ['solved', 'default', 'value' => 0],
+            ['solved', 'in', 'range' => [0, 1]],
         ];
     }
 
@@ -116,5 +122,13 @@ class Question extends \yii\db\ActiveRecord
     public function getQuestionsList()
     {
         return \yii\helpers\ArrayHelper::map(\common\models\Question::find()->all(), 'id', 'title');
+    }
+
+    /**
+     * Get array of answers
+     * @return array (id => title)
+     */
+    public function getAnswers() {
+        return \yii\helpers\ArrayHelper::map(\common\models\Answer::find()->where(['question_id' => $this->id])->all(), 'id', 'title');
     }
 }

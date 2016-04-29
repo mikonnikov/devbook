@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'password_reset_token',
             'email:email',
             [
-                'label' => 'Active',
+                'label'     => 'Active',
                 'attribute' => 'status',
                 'value' => function($model) {
                     return ($model->status == $model::STATUS_ACTIVE ? 'Yes' : 'No');

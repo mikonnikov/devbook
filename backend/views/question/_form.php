@@ -36,6 +36,8 @@ use yii\widgets\ActiveForm;
     )
     ?>
 
+    <?= $form->field($model, 'ticket')->textInput(['maxlength' => true]) ?>
+
     <?=
     $form->field($model, 'category_id')->widget(
         \kartik\select2\Select2::className(),
@@ -103,6 +105,8 @@ use yii\widgets\ActiveForm;
         ]
     )*/
     ?>
+
+    <?= $form->field($model, 'solved')->checkbox(['label' => 'Problem solved', 'value' => '1', 'unchecked' => '0']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -9,6 +9,8 @@ use yii\widgets\DetailView;
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Questions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$ans = $model->getAnswers();
 ?>
 <div class="question-view">
 
@@ -33,12 +35,35 @@ $this->params['breadcrumbs'][] = $this->title;
             'error',
             'descr:ntext',
             'answer:ntext',
-            'project.name',
-            'category.name',
-            'language.name',
-            'user.username',
+            [
+                'label'     => 'Project',
+                'value'     => (isset($model->project) ? Html::a($model->project->name, ['/project/view', 'id' => $model->project_id ]) : '-'),
+                'format'    => 'raw',
+            ],
+            'ticket:url',
+            [
+                'label'     => 'Category',
+                'value'     => (isset($model->category) ? Html::a($model->category->name, ['/category/view', 'id' => $model->category_id ]) : '-'),
+                'format'    => 'raw',
+            ],
+            [
+                'label'     => 'Language',
+                'value'     => (isset($model->language) ? Html::a($model->language->name, ['/language/view', 'id' => $model->language_id ]) : '-'),
+                'format'    => 'raw',
+            ],
+            [
+                'label'     => 'Author',
+                'value'     => (isset($model->user) ? Html::a($model->user->username, ['/user/view', 'id' => $model->user_id ]) : '-'),
+                'format'    => 'raw',
+            ],
             'add_time',
             'edit_time',
+            'solved:boolean',
+            [
+                'label'     => 'Answers',
+                'value'     => (count($ans) ? Html::a('('.count($ans).'): '.implode(', ', $ans), ['/answer', 'AnswerSearch[question_id]' => $model->id ]) : '-'),
+                'format'    => 'raw',
+            ],
         ],
     ]) ?>
 

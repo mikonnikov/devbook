@@ -28,8 +28,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'descr')->textarea(['rows' => 6]) ?>
 
-    <?php // print $form->field($model, 'user_id')->textInput() ?>
-    <?= $form->field($model, 'user_id')->widget(
+    <?php if($model->isNewRecord): ?>
+        <?= $form->field($model, 'user_id' )->hiddenInput(['value' => Yii::$app->user->identity->getId()])->label(false); ?>
+        <?= $form->field($model, 'add_time')->hiddenInput(['value' => date("Y-m-d H:i:s")])->label(false);  ?>
+    <?php else: ?>
+        <?= $form->field($model, 'user_id')->widget(
             \kartik\select2\Select2::className(),
             [
                 'model'     => $model,
@@ -38,23 +41,23 @@ use yii\widgets\ActiveForm;
                 'options'   => ['multiple' => false, 'placeholder' => 'Select user'],
             ]
         )
-    ?>
+        ?>
 
-    <?php // print $form->field($model, 'add_time')->textInput() ?>
-    <?php print $form->field($model, 'add_time')->widget(
-        \kartik\datetime\DateTimePicker::className(),
-        [
-            'name'          => 'add_time',
-            'options'       => ['placeholder' => Yii::t('app', 'Select date')],
-            'convertFormat' => true,
-            'pluginOptions' => [
-                'format'    => 'yyyy-MM-dd HH:i:ss',
-                'autoclose' => true,
-                'todayHighlight' => true
+        <?php print $form->field($model, 'add_time')->widget(
+            \kartik\datetime\DateTimePicker::className(),
+            [
+                'name'          => 'add_time',
+                'options'       => ['placeholder' => Yii::t('app', 'Select date')],
+                'convertFormat' => true,
+                'pluginOptions' => [
+                    'format'    => 'yyyy-MM-dd HH:i:ss',
+                    'autoclose' => true,
+                    'todayHighlight' => true
+                ]
             ]
-        ]
-    )
-    ?>
+        )
+        ?>
+    <?php endif; ?>
 
     <?= $form->field($model, 'ref_url')->textInput(['maxlength' => true]) ?>
 

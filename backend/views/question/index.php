@@ -33,6 +33,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
             ],
             [
+                'label'     => 'Answers',
+                'value' => function($model) {
+                    return Html::a(count($model->getAnswers()), ['/answer', 'AnswerSearch[question_id]' => $model->id ]);
+                },
+                'format' => 'raw',
+            ],
+            [
+                'label'     => 'Problem solved',
+                'attribute' => 'solved',
+                'value' => function($model) {
+                    return ($model->solved ? 'Yes' : 'No');
+                },
+                'format' => 'raw',
+            ],
+            [
                 'label' => 'Error text',
                 'value' => function($model) {
                     return "<span title='".htmlspecialchars($model->error)."'>".Html::a(htmlspecialchars(substr($model->error, 0, 30)), ['/question/update', 'id' => $model->id ]) ."</span>";
@@ -60,6 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'format' => 'raw',
             ],
+            'ticket:url',
             [
                 'label'     => 'Category',
                 'value' => function($model) {

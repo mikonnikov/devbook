@@ -27,6 +27,8 @@ class m160422_150311_question extends Migration
                     'edit_time'     => Schema::TYPE_DATETIME . "",
                     'answer'        => Schema::TYPE_TEXT . " COMMENT 'Authors answer'",
                     'error'         => Schema::TYPE_TEXT . " COMMENT 'Error text'",
+                    'ticket'        => Schema::TYPE_STRING . "(500) NOT NULL COMMENT 'Related ticket'",
+                    'solved'        => Schema::TYPE_BOOLEAN . " NOT NULL DEFAULT '0' COMMENT 'Problem solved'",
                 ],
                 $tableOptions
             );

@@ -74,7 +74,8 @@ class Category extends \yii\db\ActiveRecord
     }
 
     /**
-     * Get amount of child categories
+     * Get array of child categories
+     * @return array (id => name)
      */
     public function getChilds() {
         return \yii\helpers\ArrayHelper::map(\common\models\Category::find()->where(['parent_id' => $this->id])->all(), 'id', 'name');
