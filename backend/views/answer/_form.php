@@ -12,13 +12,49 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?=
+    $form->field($model, 'question_id')->widget(
+        \kartik\select2\Select2::className(),
+        [
+            'model'     => $model,
+            'attribute' => 'question_id',
+            'data'      => \common\models\Question::getQuestionsList(),
+            'options'   => ['multiple' => false, 'placeholder' => 'Question']
+        ]
+    )
+    ?>
+
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'descr')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
+    <?php // print $form->field($model, 'user_id')->textInput() ?>
+    <?= $form->field($model, 'user_id')->widget(
+            \kartik\select2\Select2::className(),
+            [
+                'model'     => $model,
+                'attribute' => 'user_id',
+                'data'      => \common\models\User::getUsersList(),
+                'options'   => ['multiple' => false, 'placeholder' => 'Select user'],
+            ]
+        )
+    ?>
 
-    <?= $form->field($model, 'add_time')->textInput() ?>
+    <?php // print $form->field($model, 'add_time')->textInput() ?>
+    <?php print $form->field($model, 'add_time')->widget(
+        \kartik\datetime\DateTimePicker::className(),
+        [
+            'name'          => 'add_time',
+            'options'       => ['placeholder' => Yii::t('app', 'Select date')],
+            'convertFormat' => true,
+            'pluginOptions' => [
+                'format'    => 'yyyy-MM-dd HH:i:ss',
+                'autoclose' => true,
+                'todayHighlight' => true
+            ]
+        ]
+    )
+    ?>
 
     <?= $form->field($model, 'ref_url')->textInput(['maxlength' => true]) ?>
 

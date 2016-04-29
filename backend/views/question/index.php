@@ -25,11 +25,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
             'id',
-            'title',
+            [
+                'label'     => 'Title',
+                'value' => function($model) {
+                    return (isset($model->title) ? Html::a($model->title, ['/question/update', 'id' => $model->id ]) : '-');
+                },
+                'format' => 'raw',
+            ],
             [
                 'label' => 'Error text',
                 'value' => function($model) {
-                    return "<span title='".htmlspecialchars($model->error)."'>".htmlspecialchars(substr($model->error, 0, 30))."</span>";
+                    return "<span title='".htmlspecialchars($model->error)."'>".Html::a(htmlspecialchars(substr($model->error, 0, 30)), ['/question/update', 'id' => $model->id ]) ."</span>";
                 },
                 'format' => 'html',
             ],

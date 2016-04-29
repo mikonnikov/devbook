@@ -13,6 +13,9 @@ use Yii;
  * @property integer $user_id
  * @property string $add_time
  * @property string $ref_url
+ *
+ * @property User $user
+ * @property Question $question
  */
 class Answer extends \yii\db\ActiveRecord
 {
@@ -35,7 +38,25 @@ class Answer extends \yii\db\ActiveRecord
             [['user_id'], 'integer'],
             [['add_time'], 'safe'],
             [['title', 'ref_url'], 'string', 'max' => 500],
+            [['question_id'],  'exist', 'skipOnError' => true, 'targetClass' => Question::className(),  'targetAttribute' => ['question_id'  => 'id']],
+            [['user_id'],      'exist', 'skipOnError' => true, 'targetClass' => User::className(),      'targetAttribute' => ['user_id'      => 'id']],
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQuestion()
+    {
+        return $this->hasOne(Question::className(), ['id' => 'question_id']);
     }
 
     /**
@@ -44,12 +65,13 @@ class Answer extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'Answer ID'),
-            'title' => Yii::t('app', 'Title'),
-            'descr' => Yii::t('app', 'Answer text'),
-            'user_id' => Yii::t('app', 'Author'),
-            'add_time' => Yii::t('app', 'Answer time'),
-            'ref_url' => Yii::t('app', 'Reference URL'),
+            'id'            => Yii::t('app', 'Answer ID'),
+            'title'         => Yii::t('app', 'Title'),
+            'descr'         => Yii::t('app', 'Answer text'),
+            'user_id'       => Yii::t('app', 'Author'),
+            'add_time'      => Yii::t('app', 'Answer time'),
+            'ref_url'       => Yii::t('app', 'Reference URL'),
+            'question_id'   => Yii::t('app', 'Question'),
         ];
     }
 }

@@ -109,4 +109,12 @@ class Question extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Language::className(), ['id' => 'language_id']);
     }
+
+    /**
+     * @return array
+     */
+    public function getQuestionsList()
+    {
+        return \yii\helpers\ArrayHelper::map(\common\models\Question::find()->all(), 'id', 'title');
+    }
 }

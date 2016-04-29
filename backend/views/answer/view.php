@@ -29,10 +29,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
+            [
+                'label'     => 'Question',
+                'value'     => (isset($model->question->title) ? Html::a(htmlspecialchars(substr($model->question->title, 0, 30)), ['/question/view', 'id' => $model->question_id ]) : '-'),
+                'format'    => 'raw',
+            ],
             'title',
             'descr:ntext',
-            'user_id',
-            'add_time',
+            [
+                'label'     => 'Author',
+                'value'     => (isset($model->user) ? Html::a($model->user->username, ['/user/view', 'id' => $model->user_id ]) : '-'),
+                'format'    => 'raw',
+            ],
+            'add_time:datetime',
             'ref_url:url',
         ],
     ]) ?>

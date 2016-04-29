@@ -18,7 +18,7 @@ class AnswerSearch extends Answer
     public function rules()
     {
         return [
-            [['id', 'user_id'], 'integer'],
+            [['id', 'user_id', 'question_id', 'user_id'], 'integer'],
             [['title', 'descr', 'add_time', 'ref_url'], 'safe'],
         ];
     }
@@ -59,14 +59,15 @@ class AnswerSearch extends Answer
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'user_id' => $this->user_id,
-            'add_time' => $this->add_time,
+            'id'            => $this->id,
+            'user_id'       => $this->user_id,
+            'question_id'   => $this->question_id,
+            'add_time'      => $this->add_time,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'descr', $this->descr])
-            ->andFilterWhere(['like', 'ref_url', $this->ref_url]);
+              ->andFilterWhere(['like', 'descr', $this->descr])
+              ->andFilterWhere(['like', 'ref_url', $this->ref_url]);
 
         return $dataProvider;
     }

@@ -59,13 +59,13 @@ class QuestionSearch extends Question
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'project_id' => $this->project_id,
-            'category_id' => $this->category_id,
-            'language_id' => $this->language_id,
-            'user_id' => $this->user_id,
-            'add_time' => $this->add_time,
-            'edit_time' => $this->edit_time,
+            'id'            => $this->id,
+            'project_id'    => $this->project_id,
+            'category_id'   => $this->category_id,
+            'language_id'   => $this->language_id,
+            'user_id'       => $this->user_id,
+            'add_time'      => $this->add_time,
+            'edit_time'     => $this->edit_time,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
