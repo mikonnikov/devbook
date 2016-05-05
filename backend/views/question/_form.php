@@ -74,7 +74,7 @@ use yii\widgets\ActiveForm;
     ) : $form->field($model, 'user_id')->hiddenInput(['value' => Yii::$app->user->identity->getId()])->label(false))
     ?>
 
-    <?= $form->field($model, 'add_time')->hiddenInput(['value' => ($model->add_time ? $model->add_time : date("Y-m-d H:i:s"))])->label(false);  ?>
+    <?= $form->field($model, 'add_time')->hiddenInput(['value' => ($model->isNewRecord ? date("Y-m-d H:i:s") : $model->add_time)])->label(false);  ?>
     <?php /*print $form->field($model, 'add_time')->widget(
         \kartik\datetime\DateTimePicker::className(),
         [
@@ -90,7 +90,7 @@ use yii\widgets\ActiveForm;
     ) */
     ?>
 
-    <?= $form->field($model, 'edit_time')->hiddenInput(['value' => date("Y-m-d H:i:s")])->label(false);  ?>
+    <?= $form->field($model, 'edit_time')->hiddenInput(['value' => ($model->isNewRecord ? '' : date("Y-m-d H:i:s"))])->label(false);  ?>
     <?php /*print $form->field($model, 'edit_time')->widget(
         \kartik\datetime\DateTimePicker::className(),
         [

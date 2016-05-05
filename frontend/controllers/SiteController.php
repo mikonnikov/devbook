@@ -13,6 +13,10 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
+use common\models\Question;
+use yii\data\ActiveDataProvider;
+use common\models\QuestionSearch;
+
 /**
  * Site controller
  */
@@ -72,7 +76,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new QuestionSearch();
+        $dataProviderQuestions = $searchModel->search(['limit' => 5]);
+        $dataProviderQuestions->setSort(['defaultOrder' => ['add_time'=>SORT_DESC]]);
+        $dataProviderQuestions->setPagination(['pageSize' => 5]);   // show last N questions
+
+        return $this->render('index', [ 'dataProviderQuestions' => $dataProviderQuestions ]);
     }
 
     /**

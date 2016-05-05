@@ -44,6 +44,9 @@ class QuestionSearch extends Question
         $query = Question::find();
 
         // add conditions that should always apply here
+        if(isset($params['limit']) && $params['limit']>0) {
+            $query->limit($params['limit']);
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

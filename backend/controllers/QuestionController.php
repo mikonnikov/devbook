@@ -38,6 +38,7 @@ class QuestionController extends Controller
     {
         $searchModel = new QuestionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->setSort(['defaultOrder' => ['add_time'=>SORT_DESC]]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

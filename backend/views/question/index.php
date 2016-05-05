@@ -8,6 +8,18 @@ use yii\grid\GridView;
 
 $this->title = Yii::t('app', 'Questions');
 $this->params['breadcrumbs'][] = $this->title;
+
+/**
+ * Cut text
+ * @param $str source string
+ * @return string cutted text
+ */
+function shortTitle($str) {
+    if(strlen($str) > 30) {
+        return htmlspecialchars(substr($str, 0, 30)." ...");
+    }
+    return htmlspecialchars($str);
+}
 ?>
 
 <div class="question-index">
@@ -25,10 +37,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
             'id',
+            'add_time',
+            'edit_time',
             [
                 'label'     => 'Title',
                 'value' => function($model) {
-                    return (isset($model->title) ? Html::a($model->title, ['/question/update', 'id' => $model->id ]) : '-');
+                    return (isset($model->title) ? Html::a(shortTitle($model->title), ['/question/update', 'id' => $model->id ]) : '-');
                 },
                 'format' => 'raw',
             ],
@@ -50,21 +64,28 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Error text',
                 'value' => function($model) {
-                    return "<span title='".htmlspecialchars($model->error)."'>".Html::a(htmlspecialchars(substr($model->error, 0, 30)), ['/question/update', 'id' => $model->id ]) ."</span>";
+                    return "<span title='".htmlspecialchars($model->error)."'>".Html::a(shortTitle($model->error), ['/question/update', 'id' => $model->id ]) ."</span>";
                 },
                 'format' => 'html',
             ],
             [
                 'label' => 'Problem description',
                 'value' => function($model) {
-                    return "<span title='".htmlspecialchars($model->descr)."'>".htmlspecialchars(substr($model->descr, 0, 30))."</span>";
+                    return "<span title='".htmlspecialchars($model->descr)."'>".shortTitle($model->descr)."</span>";
                 },
                 'format' => 'raw',
             ],
             [
                 'label' => 'Authors solution',
                 'value' => function($model) {
-                    return "<span title='".htmlspecialchars($model->answer)."'>".htmlspecialchars(substr($model->answer, 0, 30))."</span>";
+                    return "<span title='".htmlspecialchars($model->answer)."'>".shortTitle($model->answer)."</span>";
+                },
+                'format' => 'raw',
+            ],
+            [
+                'label' => 'Solution URL',
+                'value' => function($model) {
+                    return "<span style='text-align:center; width:100%;' title='".$model->answer_url."'><a href='".$model->answer_url."' target='_blank'><span class='glyphicon glyphicon-link'></span></a></span>";
                 },
                 'format' => 'raw',
             ],
@@ -97,8 +118,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'format' => 'raw',
             ],
-            'add_time',
-            'edit_time',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

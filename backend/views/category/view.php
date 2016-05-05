@@ -30,7 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
-            'parent_id',
+            [
+                'label'     => 'Parent category',
+                'value'     => (isset($model->parent) ? Html::a($model->parent->name . ' ('.$model->parent->id.')', ['/category/view', 'id' => $model->parent_id ]) : '-'),
+                'format'    => 'raw',
+            ],
         ],
     ]) ?>
 
