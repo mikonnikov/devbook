@@ -69,6 +69,13 @@ function shortTitle($str) {
                 'format' => 'html',
             ],
             [
+                'label' => 'Error URL',
+                'value' => function($model) {
+                    return ($model->error_url ? "<span style='text-align:center; width:100%;' title='".$model->error_url."'><a href='".$model->error_url."' target='_blank'><span class='glyphicon glyphicon-link'></span></a></span>" : '-');
+                },
+                'format' => 'raw',
+            ],
+            [
                 'label' => 'Problem description',
                 'value' => function($model) {
                     return "<span title='".htmlspecialchars($model->descr)."'>".shortTitle($model->descr)."</span>";
@@ -85,7 +92,7 @@ function shortTitle($str) {
             [
                 'label' => 'Solution URL',
                 'value' => function($model) {
-                    return "<span style='text-align:center; width:100%;' title='".$model->answer_url."'><a href='".$model->answer_url."' target='_blank'><span class='glyphicon glyphicon-link'></span></a></span>";
+                    return ($model->answer_url ? "<span style='text-align:center; width:100%;' title='".$model->answer_url."'><a href='".$model->answer_url."' target='_blank'><span class='glyphicon glyphicon-link'></span></a></span>" : '-');
                 },
                 'format' => 'raw',
             ],

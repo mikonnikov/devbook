@@ -18,6 +18,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'error')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'error_url')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'descr')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'answer')->textarea(['rows' => 10]) ?>

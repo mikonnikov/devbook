@@ -33,6 +33,7 @@ $ans = $model->getAnswers();
             'id',
             'title',
             'error',
+            'error_url:url',
             'descr:ntext',
             'answer:ntext',
             [

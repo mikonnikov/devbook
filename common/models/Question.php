@@ -21,6 +21,7 @@ use Yii;
  * @property string $answer_url
  * @property string $ticket
  * @property boolean $solved
+ * @property string $error_url
  *
  * @property User $user
  * @property Project $project
@@ -47,7 +48,7 @@ class Question extends \yii\db\ActiveRecord
             [['id', 'project_id', 'category_id', 'language_id', 'user_id'], 'integer'],
             [['descr'], 'string'],
             [['answer'], 'string'],
-            [['answer_url'], 'string'],
+            [['answer_url', 'error_url'], 'string'],
             [['ticket'], 'string'],
             [['add_time', 'edit_time'], 'safe'],
             [['title'], 'string',  'max' => 500],
@@ -57,7 +58,7 @@ class Question extends \yii\db\ActiveRecord
             [['project_id'],  'exist', 'skipOnError' => true, 'targetClass' => Project::className(),  'targetAttribute' => ['project_id'  => 'id']],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Language::className(), 'targetAttribute' => ['language_id' => 'id']],
-            [['answer_url'],  'string', 'max' => 500],
+            [['answer_url', 'error_url'],  'string', 'max' => 500],
             ['solved', 'default', 'value' => 0],
             ['solved', 'in', 'range' => [0, 1]],
         ];
@@ -81,6 +82,7 @@ class Question extends \yii\db\ActiveRecord
             'edit_time'     => Yii::t('app', 'Edit Time'),
             'answer'        => Yii::t('app', 'Authors answer'),
             'answer_url'    => Yii::t('app', 'Solution URL'),
+            'error_url'     => Yii::t('app', 'Error URL'),
         ];
     }
 

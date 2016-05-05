@@ -219,4 +219,12 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+    /**
+     *
+     */
+    public function actionQuestions() {
+        var_dump(Yii::$app->request->queryParams);
+        die();
+    }
 }
