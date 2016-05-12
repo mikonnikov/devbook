@@ -60,6 +60,14 @@ class Answer extends \yii\db\ActiveRecord
     }
 
     /**
+     * Set question
+     * @param $id
+     */
+    public function setQuestionId($id) {
+        $this->question_id = $id;
+    }
+
+    /**
      * @inheritdoc
      */
     public function attributeLabels()

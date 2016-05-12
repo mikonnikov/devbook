@@ -49,7 +49,8 @@ function shortTitle($str) {
             [
                 'label'     => 'Answers',
                 'value' => function($model) {
-                    return Html::a(count($model->getAnswers()), ['/answer', 'AnswerSearch[question_id]' => $model->id ]);
+                    return Html::a(count($model->getAnswers()), ['/answer', 'AnswerSearch[question_id]' => $model->id ]).'&nbsp;&nbsp;&nbsp;'.
+                           Html::a("<span class='glyphicon glyphicon-plus'></span>", ['/answer/create', 'question_id' => $model->id, 'title' => 'Re: '.$model->title ]);
                 },
                 'format' => 'raw',
             ],
