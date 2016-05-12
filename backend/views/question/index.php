@@ -104,7 +104,18 @@ function shortTitle($str) {
                 },
                 'format' => 'raw',
             ],
-            'ticket:url',
+            [
+                'label' => 'Ticket',
+                'value' => function($model) {
+                    $is_url = filter_var($model->ticket, FILTER_VALIDATE_URL);
+                    if($is_url) {
+                        return ($model->ticket ? "<span style='text-align:center; width:100%;' title='".$model->ticket."'><a href='".$model->ticket."' target='_blank'><span class='glyphicon glyphicon-link'></span></a></span>" : '-');
+                    } else {
+                        return ($model->ticket ? "<span style='text-align:center; width:100%;' title='".$model->ticket."'>".shortTitle($model->ticket)."</span>" : '-');
+                    }
+                },
+                'format' => 'raw',
+            ],
             [
                 'label'     => 'Category',
                 'value' => function($model) {
