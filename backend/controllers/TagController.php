@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * TagController implements the CRUD actions for Tag model.
@@ -132,7 +133,7 @@ class TagController extends Controller
      */
     public function actionList($query)
     {
-        $models = Tag::findAllByName($query);
+        $models = Tag::findAll(['name' => $query]); // findAllByName($query);
         $items = [];
 
         foreach ($models as $model) {
