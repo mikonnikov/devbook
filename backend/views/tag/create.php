@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Meta */
+/* @var $model common\models\Tag */
 
 $this->title = Yii::t('app', 'Create Meta');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Metas'), 'url' => ['index']];

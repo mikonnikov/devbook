@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Meta;
+use common\models\Tag;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * MetaController implements the CRUD actions for Meta model.
+ * TagController implements the CRUD actions for Tag model.
  */
-class MetaController extends Controller
+class TagController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,13 +30,13 @@ class MetaController extends Controller
     }
 
     /**
-     * Lists all Meta models.
+     * Lists all Tag models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Meta::find(),
+            'query' => Tag::find(),
         ]);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class MetaController extends Controller
     }
 
     /**
-     * Displays a single Meta model.
+     * Displays a single Tag model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class MetaController extends Controller
     }
 
     /**
-     * Creates a new Meta model.
+     * Creates a new Tag model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Meta();
+        $model = new Tag();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
@@ -76,7 +76,7 @@ class MetaController extends Controller
     }
 
     /**
-     * Updates an existing Meta model.
+     * Updates an existing Tag model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class MetaController extends Controller
     }
 
     /**
-     * Deletes an existing Meta model.
+     * Deletes an existing Tag model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -109,18 +109,38 @@ class MetaController extends Controller
     }
 
     /**
-     * Finds the Meta model based on its primary key value.
+     * Finds the Tag model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Meta the loaded model
+     * @return Tag the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Meta::findOne($id)) !== null) {
+        if (($model = Tag::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-}
+
+    /**
+     * return matched tags
+     * @source https://github.com/2amigos/yii2-taggable-behavior
+     * @param $query
+     * @return array
+     */
+    public function actionList($query)
+    {
+        $models = Tag::findAllByName($query);
+        $items = [];
+
+        foreach ($models as $model) {
+            $items[] = ['name' => $model->name];
+        }
+        // We know we can use ContentNegotiator filter
+        // this way is easier to show you here :)
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        return $items;
+    }}

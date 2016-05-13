@@ -5,19 +5,20 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "meta".
+ * This is the model class for table "tag".
  *
  * @property integer $id
  * @property string $name
+ * @property string $frequency
  */
-class Meta extends \yii\db\ActiveRecord
+class Tag extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'meta';
+        return 'tag';
     }
 
     /**
@@ -38,8 +39,9 @@ class Meta extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Tag name'),
+            'id'         => Yii::t('app', 'ID'),
+            'name'       => Yii::t('app', 'Tag name'),
+            'frequency'  => Yii::t('app', 'Usage frequency'),
         ];
     }
 }

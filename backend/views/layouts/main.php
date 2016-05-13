@@ -53,7 +53,7 @@ AppAsset::register($this);
                 ],
                 [
                     'label' => Yii::t('app', 'Meta tags'),
-                    'url'   => ['/meta']
+                    'url'   => ['/tag']
                 ],
             ],
             //'visible'   => Yii::$app->getUser()->can('Administrator')

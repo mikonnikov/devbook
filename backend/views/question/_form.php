@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+use dosamigos\selectize\SelectizeTextInput;
+
 /* @var $this yii\web\View */
 /* @var $model common\models\Question */
 /* @var $form yii\widgets\ActiveForm */
@@ -109,6 +111,20 @@ use yii\widgets\ActiveForm;
     ?>
 
     <?= $form->field($model, 'solved')->checkbox(['label' => 'Problem solved', 'value' => '1', 'unchecked' => '0']) ?>
+
+    <!-- @see https://github.com/2amigos/yii2-taggable-behavior -->
+    <?= $form->field($model, 'tagNames')->widget(SelectizeTextInput::className(), [
+        // calls an action that returns a JSON object with matched tags
+        'loadUrl' => ['tag/list'],
+        'options' => ['class' => 'form-control'],
+        'clientOptions' => [
+            'plugins'     => ['remove_button'],
+            'valueField'  => 'name',
+            'labelField'  => 'name',
+            'searchField' => ['name'],
+            'create' => true,
+        ],
+    ])->hint('Use commas to separate tags') ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

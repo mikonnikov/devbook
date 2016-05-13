@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use dosamigos\taggable\Taggable;
 
 /**
  * This is the model class for table "question".
@@ -61,6 +62,7 @@ class Question extends \yii\db\ActiveRecord
             [['answer_url', 'error_url'],  'string', 'max' => 500],
             ['solved', 'default', 'value' => 0],
             ['solved', 'in', 'range' => [0, 1]],
+            [['tagNames'], 'safe'],
         ];
     }
 
@@ -83,6 +85,18 @@ class Question extends \yii\db\ActiveRecord
             'answer'        => Yii::t('app', 'Authors answer'),
             'answer_url'    => Yii::t('app', 'Solution URL'),
             'error_url'     => Yii::t('app', 'Error URL'),
+        ];
+    }
+
+    /**
+     * Extensions
+     * @return array
+     */
+    public function behaviors() {
+        return [
+            [
+                'class' => Taggable::className(),
+            ],
         ];
     }
 
@@ -133,4 +147,11 @@ class Question extends \yii\db\ActiveRecord
     public function getAnswers() {
         return \yii\helpers\ArrayHelper::map(\common\models\Answer::find()->where(['question_id' => $this->id])->all(), 'id', 'title');
     }
-}
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTags()
+    {
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->viaTable('question_tag', ['question_id' => 'id']);
+    }}
