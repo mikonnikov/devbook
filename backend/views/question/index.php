@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -22,6 +23,16 @@ function shortTitle($str) {
 }
 ?>
 
+<style>
+.dtcol {
+    font-size: 11px;
+    width: 30px;
+    word-break: break-all;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+</style>
+
 <div class="question-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -31,14 +42,34 @@ function shortTitle($str) {
     <p>
         <?= Html::a(Yii::t('app', 'Create Question'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+
+    <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
             'id',
-            'add_time',
-            'edit_time',
+            [
+                'attribute' => 'add_time',
+                'contentOptions' => [
+                    'class' => 'dtcol'
+                ],
+                'value' => function($model) {
+                    return (isset($model->add_time) ? str_replace(" ", "<br />", $model->add_time) : '-');
+                },
+                'format' => 'raw',
+            ],
+            [
+                'attribute' => 'edit_time',
+                'contentOptions' => [
+                    'class' => 'dtcol'
+                ],
+                'value' => function($model) {
+                    return (isset($model->edit_time) ? str_replace(" ", "<br />", $model->edit_time) : '-');
+                },
+                'format' => 'raw',
+            ],
             [
                 'label'     => 'Title',
                 'value' => function($model) {
@@ -140,4 +171,6 @@ function shortTitle($str) {
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    <?php Pjax::end(); ?>
+
 </div>
