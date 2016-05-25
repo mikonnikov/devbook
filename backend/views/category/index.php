@@ -16,7 +16,8 @@ $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['index' ]];
     <p>
         <?= Html::a(Yii::t('app', 'Create Category'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-<?php Pjax::begin(); ?>
+
+    <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -41,4 +42,6 @@ $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['index' ]];
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-<?php Pjax::end(); ?></div>
+    <?php Pjax::end(); ?>
+
+</div>
