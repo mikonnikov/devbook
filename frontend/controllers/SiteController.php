@@ -13,6 +13,9 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
+use common\models\User;
+use common\models\UserSearch;
+
 use common\models\Question;
 use yii\data\ActiveDataProvider;
 use common\models\QuestionSearch;
@@ -77,11 +80,16 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $searchModel = new QuestionSearch();
-        $dataProviderQuestions = $searchModel->search(['limit' => 5]);
+        $dataProviderQuestions = $searchModel->search(['limit' => 10]);
         $dataProviderQuestions->setSort(['defaultOrder' => ['add_time'=>SORT_DESC]]);
-        $dataProviderQuestions->setPagination(['pageSize' => 5]);   // show last N questions
+        //$dataProviderQuestions->setPagination(['pageSize' => 5]);   // show last N questions
 
-        return $this->render('index', [ 'dataProviderQuestions' => $dataProviderQuestions ]);
+        $searchModel = new UserSearch();
+        $dataProviderUsers = $searchModel->search(['limit' => 2]);
+        $dataProviderUsers->setSort(['defaultOrder' => ['created_at' => SORT_DESC]]);
+        //$dataProviderUsers->setPagination(['pageSize' => 2]);   // show top N experts
+
+        return $this->render('index', [ 'dataProviderQuestions' => $dataProviderQuestions, 'dataProviderUsers' => $dataProviderUsers]);
     }
 
     /**
@@ -218,13 +226,5 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
-    }
-
-    /**
-     *
-     */
-    public function actionQuestions() {
-        var_dump(Yii::$app->request->queryParams);
-        die();
     }
 }

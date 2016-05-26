@@ -221,4 +221,14 @@ class User extends ActiveRecord implements IdentityInterface
 
         return parent::beforeSave($insert);
     }
+
+    /**
+     * Change active status
+     * @param $status
+     * @return mixed
+     */
+    public function setStatus($status)
+    {
+        return $this->status = $status;
+    }
 }

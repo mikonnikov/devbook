@@ -44,17 +44,12 @@ class UserSearch extends User
         $query = User::find();
 
         // add conditions that should always apply here
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
+        // ...
 
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
+            return null;
         }
 
         // grid filtering conditions
@@ -70,6 +65,10 @@ class UserSearch extends User
             ->andFilterWhere(['like', 'password_hash', $this->password_hash])
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
             ->andFilterWhere(['like', 'email', $this->email]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
 
         return $dataProvider;
     }

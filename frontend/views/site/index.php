@@ -15,7 +15,9 @@ $this->title = 'DevBook';
         <p class="lead">
             <?=Yii::t('app', 'Find solution quickly:')?>
             <input type="text" value="" />
-            <a class="btn btn-success" href="/questions" style="height:38px; vertical-align: top; padding-top:3px;"><?=Yii::t('app', 'Find')?></a>
+            <a class="btn btn-success" href="<?=Yii::$app->urlManager->createUrl(['/questions/index']);?>" style="height:38px; vertical-align: top; padding-top:3px;"><?=Yii::t('app', 'Find')?></a>
+            &nbsp;&nbsp;<?=Yii::t('app', 'OR')?>&nbsp;&nbsp;
+            <a class="btn btn-danger" href="<?=Yii::$app->urlManager->createUrl(['/questions/create']);?>" style="height:38px; vertical-align: top; padding-top:3px;"><?=Yii::t('app', 'Ask question')?></a>
         </p>
     </div>
 
@@ -28,20 +30,20 @@ $this->title = 'DevBook';
 
                 <?= ListView::widget([
                     'dataProvider'  => $dataProviderQuestions,
-                    'itemView'      => 'questions/_view_item',
+                    'itemView'      => '@frontend/views/question/_view_item',
                 ]); ?>
 
                 <?php \yii\widgets\Pjax::end(); ?>
 
-                <p><a class="btn btn-default" href="/questions"><?=Yii::t('app', 'All questions')?> &raquo;</a></p>
+                <p><a class="btn btn-default" href="<?=Yii::$app->urlManager->createUrl(['/questions/index']);?>"><?=Yii::t('app', 'All questions')?> &raquo;</a></p>
             </div>
             <div class="col-lg-4">
                 <h2>Top experts</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-                <p><a class="btn btn-default" href="/users"><?=Yii::t('app', 'All experts')?> &raquo;</a></p>
+                <?= ListView::widget([
+                    'dataProvider'  => $dataProviderUsers,
+                    'itemView'      => '@frontend/views/user/_view_item',
+                ]); ?>
+                <p><a class="btn btn-default" href="<?=Yii::$app->urlManager->createUrl(['/users/index']);?>"><?=Yii::t('app', 'All experts')?> &raquo;</a></p>
             </div>
         </div>
     </div>

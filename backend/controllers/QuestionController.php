@@ -40,7 +40,7 @@ class QuestionController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->setSort(['defaultOrder' => ['add_time'=>SORT_DESC]]);
 
-        return $this->render('index', [
+        return $this->render('@backend/views/question/index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -53,7 +53,7 @@ class QuestionController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        return $this->render('@backend/views/question/view', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -71,7 +71,7 @@ class QuestionController extends Controller
             return $this->redirect(['index']);
             //return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->render('@backend/views/question/create', [
                 'model' => $model,
             ]);
         }
@@ -91,7 +91,7 @@ class QuestionController extends Controller
             return $this->redirect(['index']);
             //return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('update', [
+            return $this->render('@backend/views/question/update', [
                 'model' => $model,
             ]);
         }

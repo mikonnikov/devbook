@@ -48,16 +48,10 @@ class QuestionSearch extends Question
             $query->limit($params['limit']);
         }
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
-
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
+            return null;
         }
 
         // grid filtering conditions
@@ -76,6 +70,10 @@ class QuestionSearch extends Question
             ->andFilterWhere(['like', 'answer', $this->answer])
             ->andFilterWhere(['like', 'error', $this->error])
             ->andFilterWhere(['like', 'answer_url', $this->answer_url]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
 
         return $dataProvider;
     }
