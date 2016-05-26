@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\ActiveForm;
+use dosamigos\selectize\SelectizeTextInput;
+use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Question */
@@ -10,8 +13,16 @@ $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Questions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-$ans = $model->getAnswers();
 ?>
+
+<style>
+.answer-form, .answers-list {
+    border: solid #CCC 1px;
+    margin: 10px;
+    padding: 10px;
+}
+</style>
+
 <div class="question-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -31,7 +42,7 @@ $ans = $model->getAnswers();
         <dl class="dl-horizontal">
 
             <dt><?=Yii::t('app', 'Problem solved?')?></dt>
-            <dd><span><?php ($model->solved==1 ? Yii::t('app', 'YES') : Yii::t('app', 'NO')); ?></span></dd>
+            <dd><span><?php echo ($model->solved ? Yii::t('app', 'YES') : Yii::t('app', 'NO')); ?></span></dd>
 
             <dt><?=Yii::t('app', 'Creation time')?></dt>
             <dd><span><?php echo $model->add_time; ?></span></dd>
@@ -46,9 +57,9 @@ $ans = $model->getAnswers();
                 <dd><span><?php echo $model->error_url; ?></span></dd>
             <?php endif; ?>
 
-            <?php if(trim($model->category)!=''): ?>
+            <?php if(trim($model->category->name)!=''): ?>
                 <dt><?=Yii::t('app', 'Category')?></dt>
-                <dd><span><?php echo $model->category; ?></span></dd>
+                <dd><span><?php echo $model->category->name; ?></span></dd>
             <?php endif; ?>
 
             <?php if(trim($model->language)!=''): ?>
@@ -66,19 +77,53 @@ $ans = $model->getAnswers();
                 <dd><span class="text-info">
                 <a href="<?=Yii::$app->urlManager->createUrl(['/users/view', 'id' => $model->user->id]);?>">
                     <?php echo "&nbsp;" . $model->user->username; ?>
+                </a>
             </span></dd>
             <?php endif; ?>
 
             <?php if(trim($model->answer)!=''): ?>
-                <dt><?=Yii::t('app', 'Author\'s answer (own solution)')?></dt>
-                <dd><span><?php echo $model->answer; ?></span></dd>
+                <dt><?=Yii::t('app', 'Author\'s answer')?></dt>
+                <dd><span><?php echo nl2br($model->answer); ?></span></dd>
             <?php endif; ?>
 
         </dl>
     </div>
 
-    <div>
-        <!-- comments/answer block -->
+    <div class="answers-list">
+        <h3>Recent answers:</h3>
+        <?= ListView::widget([
+            'dataProvider'  => $dataProviderAnswers,
+            'itemView'      => '@frontend/views/answer/_view_item',
+        ]); ?>
+    </div>
+
+    <div class="answer-form">
+
+        <h3>Write your answer:</h3>
+
+        <?php $form = ActiveForm::begin(); ?>
+
+        <?= $form->field($modelAnswer, 'question_id')->hiddenInput(['value' => $modelAnswer->id])->label(false); ?>
+
+        <?= $form->field($modelAnswer, 'title')->textInput(['maxlength' => true]) ?>
+
+        <?= $form->field($modelAnswer, 'descr')->textarea(['rows' => 6]) ?>
+
+        <?= $form->field($modelAnswer, 'add_time')->hiddenInput(['value' => date("Y-m-d H:i:s")])->label(false);  ?>
+
+        <!-- @fixme: require autorization for answer posting -->
+        <?php if(isset(\Yii::$app->user) && isset(\Yii::$app->user->identity)): ?>
+            <?= $form->field($modelAnswer, 'user_id')->hiddenInput(['value' => \Yii::$app->user->identity->id])->label(false);  ?>
+        <?php endif; ?>
+
+        <?= $form->field($modelAnswer, 'ref_url')->textInput() ?>
+
+        <div class="form-group">
+            <?= Html::submitButton(Yii::t('app', 'Post answer'), ['class' => 'btn btn-success']) ?>
+        </div>
+
+        <?php ActiveForm::end(); ?>
+
     </div>
 
 </div>

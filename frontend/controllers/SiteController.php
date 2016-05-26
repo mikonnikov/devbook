@@ -81,15 +81,14 @@ class SiteController extends Controller
     {
         $searchModel = new QuestionSearch();
         $dataProviderQuestions = $searchModel->search(['limit' => 10]);
-        $dataProviderQuestions->setSort(['defaultOrder' => ['add_time'=>SORT_DESC]]);
-        //$dataProviderQuestions->setPagination(['pageSize' => 5]);   // show last N questions
+        $dataProviderQuestions->setSort(['defaultOrder' => ['add_time' => SORT_DESC]]);
 
         $searchModel = new UserSearch();
         $dataProviderUsers = $searchModel->search(['limit' => 2]);
         $dataProviderUsers->setSort(['defaultOrder' => ['created_at' => SORT_DESC]]);
-        //$dataProviderUsers->setPagination(['pageSize' => 2]);   // show top N experts
 
-        return $this->render('index', [ 'dataProviderQuestions' => $dataProviderQuestions, 'dataProviderUsers' => $dataProviderUsers]);
+        return $this->render('index', [ 'dataProviderQuestions' => $dataProviderQuestions,
+                                        'dataProviderUsers'     => $dataProviderUsers]);
     }
 
     /**

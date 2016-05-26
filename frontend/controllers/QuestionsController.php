@@ -8,6 +8,8 @@
 
 namespace frontend\controllers;
 
+use common\models\Answer;
+use common\models\AnswerSearch;
 use Yii;
 use common\models\Question;
 use yii\data\ActiveDataProvider;
@@ -39,8 +41,16 @@ class QuestionsController extends QuestionController
      */
     public function actionView($id)
     {
+        $modelAnswer   = new Answer();
+        $modelQuestion = $this->findModel($id);
+
+        $searchModel = new AnswerSearch();
+        $dataProviderAnswers = $searchModel->search(['AnswerSearch' => ['question_id' => $id]]);
+
         return $this->render('@frontend/views/question/view', [
-            'model' => $this->findModel($id),
+            'model'                 => $modelQuestion,
+            'modelAnswer'           => $modelAnswer,
+            'dataProviderAnswers'   => $dataProviderAnswers,
         ]);
     }
 

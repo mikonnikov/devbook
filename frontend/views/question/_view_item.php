@@ -1,6 +1,9 @@
 <div class="" style="border: solid #CCC 1px; margin: 10px; padding: 10px;">
     <dl class="dl-horizontal">
 
+        <dt><?=Yii::t('app', 'Problem solved?')?></dt>
+        <dd><span><?php echo ($model->solved ? Yii::t('app', 'YES') : Yii::t('app', 'NO')); ?></span></dd>
+
         <?php if(trim($model->title)!=''): ?>
             <dt><?=Yii::t('app', 'Title')?></dt>
             <dd><span class="text-info">
