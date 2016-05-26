@@ -9,7 +9,7 @@
 
         <?php if(trim($model->descr)!=''): ?>
             <dt><?=Yii::t('app', 'Answer')?></dt>
-            <dd><span><?php echo substr($model->descr, 0, 300).' ... '; ?></span></dd>
+            <dd><span><?php echo nl2br($model->descr); ?></span></dd>
         <?php endif; ?>
 
         <?php if(trim($model->ref_url)!=''): ?>

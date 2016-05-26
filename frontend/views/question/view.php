@@ -101,28 +101,33 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <h3>Write your answer:</h3>
 
-        <?php $form = ActiveForm::begin(); ?>
-
-        <?= $form->field($modelAnswer, 'question_id')->hiddenInput(['value' => $model->id])->label(false); ?>
-
-        <?= $form->field($modelAnswer, 'title')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($modelAnswer, 'descr')->textarea(['rows' => 6]) ?>
-
-        <?= $form->field($modelAnswer, 'add_time')->hiddenInput(['value' => date("Y-m-d H:i:s")])->label(false);  ?>
-
-        <!-- @fixme: require autorization for answer posting -->
         <?php if(isset(\Yii::$app->user) && isset(\Yii::$app->user->identity)): ?>
+
+            <?php $form = ActiveForm::begin(); ?>
+
+            <?= $form->field($modelAnswer, 'question_id')->hiddenInput(['value' => $model->id])->label(false); ?>
+
+            <?= $form->field($modelAnswer, 'title')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($modelAnswer, 'descr')->textarea(['rows' => 6]) ?>
+
+            <?= $form->field($modelAnswer, 'add_time')->hiddenInput(['value' => date("Y-m-d H:i:s")])->label(false);  ?>
+
             <?= $form->field($modelAnswer, 'user_id')->hiddenInput(['value' => \Yii::$app->user->identity->id])->label(false);  ?>
+
+            <?= $form->field($modelAnswer, 'ref_url')->textInput() ?>
+
+            <div class="form-group">
+                <?= Html::submitButton(Yii::t('app', 'Post answer'), ['class' => 'btn btn-success']) ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
+
+        <?php else: ?>
+
+            <p><?=Yii::t('app', 'Only autorized users can post comments/answers. Please, login/register.')?></p>
+
         <?php endif; ?>
-
-        <?= $form->field($modelAnswer, 'ref_url')->textInput() ?>
-
-        <div class="form-group">
-            <?= Html::submitButton(Yii::t('app', 'Post answer'), ['class' => 'btn btn-success']) ?>
-        </div>
-
-        <?php ActiveForm::end(); ?>
 
     </div>
 
