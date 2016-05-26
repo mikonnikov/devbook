@@ -47,6 +47,13 @@ class QuestionsController extends QuestionController
         $searchModel = new AnswerSearch();
         $dataProviderAnswers = $searchModel->search(['AnswerSearch' => ['question_id' => $id]]);
 
+        if(\Yii::$app->getRequest()->getIsPost()) {
+            $model = new Answer();
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                \Yii::$app->getSession()->setFlash('success', 'Comment been added');
+            }
+        }
+
         return $this->render('@frontend/views/question/view', [
             'model'                 => $modelQuestion,
             'modelAnswer'           => $modelAnswer,

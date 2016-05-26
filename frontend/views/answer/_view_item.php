@@ -8,7 +8,7 @@
         <?php endif; ?>
 
         <?php if(trim($model->descr)!=''): ?>
-            <dt><?=Yii::t('app', 'Description')?></dt>
+            <dt><?=Yii::t('app', 'Answer')?></dt>
             <dd><span><?php echo substr($model->descr, 0, 300).' ... '; ?></span></dd>
         <?php endif; ?>
 
@@ -22,6 +22,7 @@
             <dd><span class="text-info">
                 <a href="<?=Yii::$app->urlManager->createUrl(['/users/view', 'id' => $model->user->id]);?>">
                     <?php echo "&nbsp;" . $model->user->username; ?>
+                </a>
             </span></dd>
         <?php endif; ?>
 

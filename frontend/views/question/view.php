@@ -103,7 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($modelAnswer, 'question_id')->hiddenInput(['value' => $modelAnswer->id])->label(false); ?>
+        <?= $form->field($modelAnswer, 'question_id')->hiddenInput(['value' => $model->id])->label(false); ?>
 
         <?= $form->field($modelAnswer, 'title')->textInput(['maxlength' => true]) ?>
 
