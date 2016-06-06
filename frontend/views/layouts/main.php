@@ -38,6 +38,7 @@ AppAsset::register($this);
         ['label' => Yii::t('app', 'Home'),      'url' => ['/site/index']],
         ['label' => Yii::t('app', 'About'),     'url' => ['/site/about']],
         ['label' => Yii::t('app', 'Contact'),   'url' => ['/site/contact']],
+        ['label' => Yii::t('app', 'Admin'),     'url' => Yii::$app->urlManagerBackend->BaseUrl . Yii::$app->urlManagerBackend->createUrl(['question'])],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];

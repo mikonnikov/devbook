@@ -75,7 +75,7 @@ use dosamigos\selectize\SelectizeTextInput;
             'data'      => \common\models\User::getUsersList(),
             'options'   => ['multiple' => false, 'placeholder' => 'Select user'],
         ]
-    ) : $form->field($model, 'user_id')->hiddenInput(['value' => Yii::$app->user->identity->getId()])->label(false))
+    ) : $form->field($model, 'user_id')->hiddenInput(['value' => (Yii::$app->user->identity ? Yii::$app->user->identity->getId() : '')])->label(false))
     ?>
 
     <?= $form->field($model, 'add_time')->hiddenInput(['value' => ($model->isNewRecord ? date("Y-m-d H:i:s") : $model->add_time)])->label(false);  ?>

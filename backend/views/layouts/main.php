@@ -36,8 +36,8 @@ AppAsset::register($this);
     ]);
 
     $menuItems = [
-        ['label'    => 'Home', 'url' => ['/site/index']],
-        ['label'    => 'Dictionaries',
+        ['label'    => Yii::t('app', 'Home'), 'url' => ['/site/index']],
+        ['label'    => Yii::t('app', 'Dictionaries'),
             'items' => [
                 [
                     'label' => Yii::t('app', 'Categories'),
@@ -58,9 +58,10 @@ AppAsset::register($this);
             ],
             //'visible'   => Yii::$app->getUser()->can('Administrator')
         ],
-        ['label' => 'Questions', 'url' => ['/question']],
-        ['label' => 'Answers', 'url' => ['/answer']],
-        ['label' => 'Users', 'url' => ['/user']],
+        ['label' => Yii::t('app', 'Questions'), 'url' => ['/question']],
+        ['label' => Yii::t('app', 'Answers'),   'url' => ['/answer']],
+        ['label' => Yii::t('app', 'Users'),     'url' => ['/user']],
+        ['label' => Yii::t('app', 'Frontend'),  'url' => Yii::$app->urlManagerFrontend->createUrl(['questions'])],
     ];
 
     if (Yii::$app->user->isGuest) {

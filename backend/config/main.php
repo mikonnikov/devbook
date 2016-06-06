@@ -30,14 +30,20 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
+        'urlManager'            => [        // Backend
+            'enablePrettyUrl'   => false,   // true,
+            'showScriptName'    => true,    // false,
+            'rules'             => [],
         ],
-        */
+        'urlManagerFrontend'    => [        // Frontend
+            'class'             => 'yii\web\urlManager',
+            'baseUrl'           => '',
+            'hostInfo'          => '',
+            'enableStrictParsing' => true,
+            'enablePrettyUrl'   => true,
+            'showScriptName'    => false,
+            'rules' => [],
+        ],
     ],
     'params' => $params,
 ];

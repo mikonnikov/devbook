@@ -29,14 +29,19 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
+        'urlManager'            => [        // Frontend
+            'enablePrettyUrl'   => true,
+            'showScriptName'    => false,
+            'rules'             => [],
         ],
-        */
+        'urlManagerBackend'     => [        // Backend
+            'class'             => 'yii\web\urlManager',
+            'baseUrl'           => '/backend/web/',
+            'hostInfo'          => '',
+            'enablePrettyUrl'   => false,
+            'showScriptName'    => true,
+            'rules' => [],
+        ],
         'i18n' => [
             'translations' => [
                 '*' => [
