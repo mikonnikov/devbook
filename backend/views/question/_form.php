@@ -18,7 +18,7 @@ use dosamigos\selectize\SelectizeTextInput;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'error')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'error')->textarea(['rows' => 3]) ?>
 
     <?= $form->field($model, 'error_url')->textInput(['maxlength' => true]) ?>
 

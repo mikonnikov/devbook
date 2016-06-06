@@ -49,22 +49,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?php if(trim($model->error)!=''): ?>
                 <dt><?=Yii::t('app', 'Error text')?></dt>
-                <dd><span><?php echo $model->error; ?></span></dd>
+                <dd><span><pre><?php echo $model->error; ?></pre></span></dd>
             <?php endif; ?>
 
-            <?php if(trim($model->error_url)!=''): ?>
+            <?php if(isset($model->error_url) && trim($model->error_url)!=''): ?>
                 <dt><?=Yii::t('app', 'Error URL')?></dt>
                 <dd><span><?php echo $model->error_url; ?></span></dd>
             <?php endif; ?>
 
-            <?php if(trim($model->category->name)!=''): ?>
+            <?php if(isset($model->category->name) && trim($model->category->name)!=''): ?>
                 <dt><?=Yii::t('app', 'Category')?></dt>
                 <dd><span><?php echo $model->category->name; ?></span></dd>
             <?php endif; ?>
 
-            <?php if(trim($model->language)!=''): ?>
+            <?php if(isset($model->language->name) && trim($model->language->name)!=''): ?>
                 <dt><?=Yii::t('app', 'Language')?></dt>
-                <dd><span><?php echo $model->language; ?></span></dd>
+                <dd><span><?php echo $model->language->name; ?></span></dd>
             <?php endif; ?>
 
             <?php if(trim($model->descr)!=''): ?>
