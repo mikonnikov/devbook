@@ -14,10 +14,15 @@ $this->title = 'DevBook';
         <h1><?=Yii::t('app', 'Have a problem?')?></h1>
         <p class="lead">
             <?=Yii::t('app', 'Find solution quickly:')?>
-            <input type="text" value="" />
-            <a class="btn btn-success" href="<?=Yii::$app->urlManager->createUrl(['/questions/index']);?>" style="height:38px; vertical-align: top; padding-top:3px;"><?=Yii::t('app', 'Find')?></a>
-            &nbsp;&nbsp;<?=Yii::t('app', 'OR')?>&nbsp;&nbsp;
-            <a class="btn btn-danger" href="<?=Yii::$app->urlManager->createUrl(['/questions/create']);?>" style="height:38px; vertical-align: top; padding-top:3px;"><?=Yii::t('app', 'Ask question')?></a>
+            <?php $form = ActiveForm::begin([
+                'action' => ['/questions'],
+                'method' => 'get',
+            ]); ?>
+                <input type="text" name="QuestionSearch[title]" value="" class="mainSearch"/>
+                <a class="btn btn-success" href="<?=Yii::$app->urlManager->createUrl(['/questions/index']);?>" style="height:38px; vertical-align: top; padding-top:3px;"><?=Yii::t('app', 'Find')?></a>
+                &nbsp;&nbsp;<?=Yii::t('app', 'OR')?>&nbsp;&nbsp;
+                <a class="btn btn-danger" href="<?=Yii::$app->urlManager->createUrl(['/questions/create']);?>" style="height:38px; vertical-align: top; padding-top:3px;"><?=Yii::t('app', 'Ask question')?></a>
+            <?php ActiveForm::end(); ?>
         </p>
     </div>
 

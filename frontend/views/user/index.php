@@ -20,3 +20,5 @@ $this->params['breadcrumbs'][] = $this->title;
     'dataProvider'  => $dataProviderUsers,
     'itemView'      => '_view_item',
 ]); ?>
+
+</div>

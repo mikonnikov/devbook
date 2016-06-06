@@ -12,11 +12,15 @@ use yii\widgets\Pjax;
 $this->title = Yii::t('app', 'Questions');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index">
+<div class="question-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<h1><?= Html::encode($this->title) ?></h1>
 
-    <?= ListView::widget([
-        'dataProvider'  => $dataProvider,
-        'itemView'      => '_view_item',
-    ]); ?>
+<?php echo $this->render('_search', ['model' => $searchModel]); ?>
+
+<?= ListView::widget([
+    'dataProvider'  => $dataProvider,
+    'itemView'      => '_view_item',
+]); ?>
+
+</div>

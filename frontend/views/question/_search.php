@@ -31,9 +31,10 @@ use yii\widgets\ActiveForm;
 
     <table border="0" cellpadding="0" cellspacing="0" width="100%" id="searchtab">
         <tr>
-            <td width="50%" valign="top">
-                <?= $form->field($model, 'title') ?>
-
+            <td width="60%" valign="top">
+                <?= $form->field($model, 'title')->label(false) ?>
+            </td>
+            <td width="20%" valign="top">
                 <?=
                 $form->field($model, 'category_id')->widget(
                     \kartik\select2\Select2::className(),
@@ -43,9 +44,10 @@ use yii\widgets\ActiveForm;
                         'data'      => \common\models\Category::getCategoriesList(),
                         'options'   => ['multiple' => false, 'placeholder' => 'Select category']
                     ]
-                )
+                )->label(false)
                 ?>
-
+            </td>
+            <td width="20%" valign="top">
                 <?=
                 $form->field($model, 'language_id')->widget(
                     \kartik\select2\Select2::className(),
@@ -55,13 +57,10 @@ use yii\widgets\ActiveForm;
                         'data'      => \common\models\Language::getLanguagesList(),
                         'options'   => ['multiple' => false, 'placeholder' => 'Select language']
                     ]
-                )
+                )->label(false)
                 ?>
-
-
             </td>
         </tr>
-
     </table>
 
     <div class="form-group" style="text-align: center; padding-top:5px;">
