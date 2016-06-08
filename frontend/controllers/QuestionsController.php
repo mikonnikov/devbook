@@ -35,6 +35,24 @@ class QuestionsController extends QuestionController
     }
 
     /**
+     * Call backend's controller
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionCreate()
+    {
+        $model = new Question();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['questions/view?id=' . $model->id]);
+        } else {
+            return $this->render('@frontend/views/question/create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    /**
      * Displays a single Question page
      * @param integer $id
      * @return mixed
@@ -68,7 +86,7 @@ class QuestionsController extends QuestionController
     public function actionIndex()
     {
         $searchModel = new QuestionSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->searchAll(Yii::$app->request->queryParams);
         $dataProvider->setSort(['defaultOrder' => ['add_time'=>SORT_DESC]]);
 
         return $this->render('@frontend/views/question/index', [

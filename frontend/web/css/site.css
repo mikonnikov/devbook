@@ -106,6 +106,19 @@ a.desc:after {
 
 /* MY custom styles */
 
+.question-search {
+    width: 800px;
+    height: auto;
+    background-color: #c7ddef;
+    padding: 10px;
+    padding-bottom:0px !important;
+    border-radius: 5px;
+    border: 1px solid #000;
+}
+#searchtab td {
+    padding: 10px;
+}
+
 .mainSearch {
     width:300px;
     height:36px;
@@ -113,4 +126,9 @@ a.desc:after {
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
+}
+
+.dot_href {
+    text-decoration: none;
+    border-bottom: dashed;
 }

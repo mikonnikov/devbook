@@ -69,7 +69,6 @@ class QuestionController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
-            //return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('@backend/views/question/create', [
                 'model' => $model,

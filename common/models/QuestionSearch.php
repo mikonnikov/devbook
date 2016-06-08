@@ -77,4 +77,44 @@ class QuestionSearch extends Question
 
         return $dataProvider;
     }
+
+    /**
+     * Search by all fields (for usage on frontend)
+     * @param array $params
+     * @return ActiveDataProvider
+     */
+    public function searchAll($params)
+    {
+        $query = Question::find();
+
+        // add conditions that should always apply here
+        if(isset($params['limit']) && $params['limit']>0) {
+            $query->limit($params['limit']);
+        }
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            return null;
+        }
+
+        // grid filtering conditions
+        $searchString = $this->title;
+        $query->orFilterWhere(['like', 'title',      $searchString]);
+        $query->orFilterWhere(['like', 'descr',      $searchString]);
+        $query->orFilterWhere(['like', 'answer',     $searchString]);
+        $query->orFilterWhere(['like', 'answer_url', $searchString]);
+        $query->orFilterWhere(['like', 'error',      $searchString]);
+
+        $query->andFilterWhere([
+            'category_id'   => $this->category_id,
+            'language_id'   => $this->language_id,
+        ]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        return $dataProvider;
+    }
 }

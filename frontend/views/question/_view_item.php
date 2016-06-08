@@ -27,7 +27,26 @@
             <dt><?=Yii::t('app', 'Author')?></dt>
             <dd><span class="text-info">
                 <a href="<?=Yii::$app->urlManager->createUrl(['/users/view', 'id' => $model->user->id]);?>">
-                <?php echo "&nbsp;" . $model->user->username; ?>
+                    <?php echo "&nbsp;" . $model->user->username; ?>
+                </a>
+            </span></dd>
+        <?php endif; ?>
+
+        <?php if(isset($model->category) && trim($model->category->name)!=''): ?>
+            <dt><?=Yii::t('app', 'Category')?></dt>
+            <dd><span class="text-info">
+                <a href="<?=Yii::$app->urlManager->createUrl(['/questions', 'QuestionSearch[category_id]' => $model->category->id]);?>">
+                    <?php echo "&nbsp;" . $model->category->name; ?>
+                </a>
+            </span></dd>
+        <?php endif; ?>
+
+        <?php if(isset($model->language) && trim($model->language->name)!=''): ?>
+            <dt><?=Yii::t('app', 'Language')?></dt>
+            <dd><span class="text-info">
+                <a href="<?=Yii::$app->urlManager->createUrl(['/questions', 'QuestionSearch[language_id]' => $model->language->id]);?>">
+                    <?php echo "&nbsp;" . $model->language->name; ?>
+                </a>
             </span></dd>
         <?php endif; ?>
 

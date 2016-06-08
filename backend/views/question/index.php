@@ -15,12 +15,15 @@ $this->params['breadcrumbs'][] = $this->title;
  * @param $str source string
  * @return string cutted text
  */
-function shortTitle($str) {
+function shortTitle($str)
+{
     if(strlen($str) > 30) {
-        return htmlspecialchars(substr($str, 0, 30)." ...");
+        return htmlspecialchars(substr($str, 0, 20)." ...");
     }
+
     return htmlspecialchars($str);
 }
+
 ?>
 
 <style>
@@ -30,6 +33,11 @@ function shortTitle($str) {
     word-break: break-all;
     overflow: hidden;
     word-wrap: break-word;
+}
+.question-index {
+    left: 0px;
+    margin-left: 0px;
+    padding-left: 0px;
 }
 </style>
 

@@ -12,4 +12,7 @@ return [
     'YES'                               => 'ДА',
     'NO'                                => 'НЕТ',
     'Problem solved?'                   => 'Проблема решена?',
+    // messages
+    'Use commas to separate tags'       => 'Используйте запятые для разделения тегов',
+    'I have my own ready solution'      => '',
 ];

@@ -8,21 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<style>
-    .question-search {
-        width: 800px;
-        background-color: #c7ddef;
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #000;
-    }
-    #searchtab td {
-        padding: 10px;
-    }
-</style>
-
-
-<div class="question-search">
+<div class="question-search" style="width:100%;">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -31,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <table border="0" cellpadding="0" cellspacing="0" width="100%" id="searchtab">
         <tr>
-            <td width="60%" valign="top">
+            <td width="50%" valign="top">
                 <?= $form->field($model, 'title')->label(false) ?>
             </td>
             <td width="20%" valign="top">
@@ -60,14 +46,15 @@ use yii\widgets\ActiveForm;
                 )->label(false)
                 ?>
             </td>
+            <td width="10%" valign="top" nowrap="nowrap">
+                <div style="width:200px;">
+                    <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary', 'style' => 'margin-right:10px;']) ?>
+                    <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default', 'style' => 'margin-right:10px;']) ?>
+                    <a class="btn btn-danger" href="<?=Yii::$app->urlManager->createUrl(['/questions/create']);?>"><?=Yii::t('app', 'Ask')?></a>
+                </div>
+            </td>
         </tr>
     </table>
-
-    <div class="form-group" style="text-align: center; padding-top:5px;">
-        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-        &nbsp;&nbsp;&nbsp;
-        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
-    </div>
 
     <?php ActiveForm::end(); ?>
 
