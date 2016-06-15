@@ -60,6 +60,7 @@ $ans = $model->getAnswers();
             'add_time',
             'edit_time',
             'solved:boolean',
+            'private:boolean',
             [
                 'label'     => 'Answers',
                 'value'     => (count($ans) ? Html::a('('.count($ans).'): '.implode(', ', $ans), ['/answer', 'AnswerSearch[question_id]' => $model->id ]) : '-'),

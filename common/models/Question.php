@@ -22,6 +22,7 @@ use dosamigos\taggable\Taggable;
  * @property string $answer_url
  * @property string $ticket
  * @property boolean $solved
+ * @property boolean $private
  * @property string $error_url
  *
  * @property User $user
@@ -61,7 +62,9 @@ class Question extends \yii\db\ActiveRecord
             [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Language::className(), 'targetAttribute' => ['language_id' => 'id']],
             [['answer_url', 'error_url'],  'string', 'max' => 500],
             ['solved', 'default', 'value' => 0],
+            ['private', 'default', 'value' => 0],
             ['solved', 'in', 'range' => [0, 1]],
+            ['private', 'in', 'range' => [0, 1]],
             [['tagNames'], 'safe'],
         ];
     }

@@ -29,8 +29,10 @@ class m160422_150311_question extends Migration
                     'error'         => Schema::TYPE_TEXT . " COMMENT 'Error text'",
                     'answer_url'    => Schema::TYPE_STRING . "(500) NOT NULL COMMENT 'Solution URL'",
                     'solved'        => Schema::TYPE_BOOLEAN . " NOT NULL DEFAULT '0' COMMENT 'Problem solved'",
+                    'private'       => Schema::TYPE_BOOLEAN . " NOT NULL DEFAULT '0' COMMENT 'Private question'",
+                    'private'       => Schema::TYPE_BOOLEAN . " NOT NULL DEFAULT '0' COMMENT 'Visible for author only'",
                     'ticket'        => Schema::TYPE_STRING . "(500) NOT NULL COMMENT 'Related ticket'",
-                    'error_url'    => Schema::TYPE_STRING . "(500) NOT NULL COMMENT 'Error page URL'",
+                    'error_url'     => Schema::TYPE_STRING . "(500) NOT NULL COMMENT 'Error page URL'",
                 ],
                 $tableOptions
             );

@@ -112,6 +112,8 @@ use dosamigos\selectize\SelectizeTextInput;
 
     <?= $form->field($model, 'solved')->checkbox(['label' => 'Problem solved', 'value' => '1', 'unchecked' => '0']) ?>
 
+    <?= $form->field($model, 'private')->checkbox(['label' => 'Private question', 'value' => '1', 'unchecked' => '0']) ?>
+
     <!-- @see https://github.com/2amigos/yii2-taggable-behavior -->
     <?= $form->field($model, 'tagNames')->widget(SelectizeTextInput::className(), [
         // calls an action that returns a JSON object with matched tags

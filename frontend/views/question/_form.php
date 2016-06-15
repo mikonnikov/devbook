@@ -10,6 +10,31 @@ use dosamigos\selectize\SelectizeTextInput;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
+<script language="javascript" src="/js/jquery.js" />
+
+<script language="javascript">
+$(document).ready(function() {
+});
+</script>
+
+<style>
+.dotHref {
+    border-bottom: 1px dashed #0000aa;
+    color: #0000aa;
+    cursor: pointer;
+}
+#ownAnswer {
+    display: none;
+    border: 1px dashed #000;
+    border-radius: 5px;
+    width: 100%;
+    height: auto;
+    background-color: #c3c3c3;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+</style>
+
 <div class="question-form">
 
     <?php $form = ActiveForm::begin(); ?>
@@ -50,11 +75,13 @@ use dosamigos\selectize\SelectizeTextInput;
 
     <?= $form->field($model, 'add_time')->hiddenInput(['value' => date("Y-m-d H:i:s")])->label(false);  ?>
 
-    <p><a href="#" style="dot_href"><?=Yii::t('app', 'I have my own ready solution')?></a></p>
-    <div id="ownAnswer" style="display:none;">
+    <p><a class="dotHref" id="myAnswer" onClick="$('#ownAnswer').toggle('display');"><?=Yii::t('app', 'I have my own ready solution')?></a></p>
+
+    <div id="ownAnswer" style="display:block;">
         <?= $form->field($model, 'answer')->textarea(['rows' => 10]) ?>
         <?= $form->field($model, 'answer_url')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'solved')->checkbox(['label' => 'Problem solved', 'value' => '1', 'unchecked' => '0']) ?>
+        <?= $form->field($model, 'private')->checkbox(['value' => '1', 'unchecked' => '0']) ?>
     </div>
 
     <!-- @see https://github.com/2amigos/yii2-taggable-behavior -->

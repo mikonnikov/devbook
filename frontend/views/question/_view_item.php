@@ -4,6 +4,9 @@
         <dt><?=Yii::t('app', 'Problem solved?')?></dt>
         <dd><span><?php echo ($model->solved ? Yii::t('app', 'YES') : Yii::t('app', 'NO')); ?></span></dd>
 
+        <dt><?=Yii::t('app', 'Private question?')?></dt>
+        <dd><span><?php echo ($model->private ? Yii::t('app', 'YES') : Yii::t('app', 'NO')); ?></span></dd>
+
         <?php if(trim($model->title)!=''): ?>
             <dt><?=Yii::t('app', 'Title')?></dt>
             <dd><span class="text-info">

@@ -102,6 +102,22 @@ function shortTitle($str)
                 'format' => 'raw',
             ],
             [
+                'label'     => 'Private question',
+                'attribute' => 'private',
+                'value' => function($model) {
+                    return ($model->private ? 'Yes' : 'No');
+                },
+                'format' => 'raw',
+            ],
+            [
+                'label'     => 'Private question',
+                'attribute' => 'private',
+                'value' => function($model) {
+                    return ($model->private ? 'Yes' : 'No');
+                },
+                'format' => 'raw',
+            ],
+            [
                 'label' => 'Error text',
                 'value' => function($model) {
                     return "<span title='".htmlspecialchars($model->error)."'>".Html::a(shortTitle($model->error), ['/question/update', 'id' => $model->id ]) ."</span>";
