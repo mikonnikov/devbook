@@ -36,13 +36,20 @@ class QuestionController extends Controller
      */
     public function actionIndex()
     {
+        $ext_search = (isset(Yii::$app->request->queryParams['ext_search']) ? Yii::$app->request->queryParams['ext_search'] : 0);
+
         $searchModel = new QuestionSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if($ext_search) {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        } else {
+            $dataProvider = $searchModel->searchAll(Yii::$app->request->queryParams);
+        }
         $dataProvider->setSort(['defaultOrder' => ['add_time'=>SORT_DESC]]);
 
         return $this->render('@backend/views/question/index', [
-            'searchModel' => $searchModel,
+            'searchModel'  => $searchModel,
             'dataProvider' => $dataProvider,
+            'ext_search'   => $ext_search
         ]);
     }
 

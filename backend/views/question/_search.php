@@ -8,12 +8,18 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="question-search" id="extSearch" style="display:none;">
+<script language="javascript" src="/js/common.js"></script>
+
+<div class="question-search" id="extSearch" style="display:<?=($ext_search ? 'block' : 'none')?>">
+
+    <p><a class="dotHref" id="myAnswer" onClick="toggleSearch(0);"><?=Yii::t('app', 'Quick search')?></a></p>
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
+
+    <input type="hidden" name="ext_search" value="1" />
 
     <table border="0" cellpadding="0" cellspacing="0" width="100%" id="searchtab">
         <tr>
@@ -94,7 +100,5 @@ use yii\widgets\ActiveForm;
     </div>
 
     <?php ActiveForm::end(); ?>
-
-    <p><a class="dotHref" id="myAnswer" onClick="$('#search').html($('#quickSearch').html());"><?=Yii::t('app', 'Quick search')?></a></p>
 
 </div>

@@ -12,19 +12,25 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="question-search" id="quickSearch" style="width:100%; display:none;">
+<script language="javascript" src="/js/common.js"></script>
+
+<div class="question-search" id="quickSearch" style="display:<?=($ext_search ? 'none' : 'block')?>">
+
+    <p><a class="dotHref" id="myAnswer" onClick="toggleSearch(1);"><?=Yii::t('app', 'Extended search')?></a></p>
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
 
-    <table border="0" cellpadding="0" cellspacing="0" width="100%" id="searchtab">
+    <input type="hidden" name="ext_search" value="0" />
+
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" id="searchtab" style="width:100%;">
         <tr>
-            <td width="50%" valign="top">
+            <td valign="top" style="width:300px;">
                 <?= $form->field($model, 'title')->label(false) ?>
             </td>
-            <td width="20%" valign="top">
+            <td valign="top">
                 <?=
                 $form->field($model, 'category_id')->widget(
                     \kartik\select2\Select2::className(),
@@ -37,7 +43,7 @@ use yii\widgets\ActiveForm;
                 )->label(false)
                 ?>
             </td>
-            <td width="20%" valign="top">
+            <td valign="top">
                 <?=
                 $form->field($model, 'language_id')->widget(
                     \kartik\select2\Select2::className(),
@@ -50,17 +56,13 @@ use yii\widgets\ActiveForm;
                 )->label(false)
                 ?>
             </td>
-            <td width="10%" valign="top" nowrap="nowrap">
+            <td valign="top" nowrap="nowrap">
                 <div style="width:200px;">
                     <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary', 'style' => 'margin-right:10px;']) ?>
-                    <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default', 'style' => 'margin-right:10px;']) ?>
-                    <a class="btn btn-danger" href="<?=Yii::$app->urlManager->createUrl(['/questions/create']);?>"><?=Yii::t('app', 'Ask')?></a>
                 </div>
             </td>
         </tr>
     </table>
-
-    <p><a class="dotHref" id="myAnswer" onClick="$('#search').html($('#extSearch').html());"><?=Yii::t('app', 'Extended search')?></a></p>
 
     <?php ActiveForm::end(); ?>
 

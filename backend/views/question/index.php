@@ -49,26 +49,24 @@ function shortTitle($str)
 #searchtab td {
     padding: 10px;
 }
+.dotHref {
+    border-bottom: 1px dashed #0000aa;
+    color: #0000aa;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 10px;
+}
 </style>
 
-<script language="javascript" src="/js/jquery.js" />
-
-<script language="javascript">
-$(document).ready(function() {
-    $('#search').html($('#quickSearch').html());
-});
-</script>
+<script language="javascript" src="/js/jquery.js"></script>
 
 <div class="question-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <div id="search" class="question-search">
-    </div>
+    <?php echo $this->render('_search', ['model' => $searchModel, 'ext_search' => $ext_search]); ?>
 
-    <?php echo $this->render('_quick_search', ['model' => $searchModel]); ?>
-
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo $this->render('_quick_search', ['model' => $searchModel, 'ext_search' => $ext_search]); ?>
 
     <hr />
 
