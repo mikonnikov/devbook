@@ -77,7 +77,7 @@ $(document).ready(function() {
 
     <p><a class="dotHref" id="myAnswer" onClick="$('#ownAnswer').toggle('display');"><?=Yii::t('app', 'I have my own ready solution')?></a></p>
 
-    <div id="ownAnswer" style="display:block;">
+    <div id="ownAnswer" style="display:none;">
         <?= $form->field($model, 'answer')->textarea(['rows' => 10]) ?>
         <?= $form->field($model, 'answer_url')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'solved')->checkbox(['label' => 'Problem solved', 'value' => '1', 'unchecked' => '0']) ?>

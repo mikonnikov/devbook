@@ -39,13 +39,38 @@ function shortTitle($str)
     margin-left: 0px;
     padding-left: 0px;
 }
+.question-search {
+    width: 800px;
+    background-color: #c7ddef;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #000;
+}
+#searchtab td {
+    padding: 10px;
+}
 </style>
+
+<script language="javascript" src="/js/jquery.js" />
+
+<script language="javascript">
+$(document).ready(function() {
+    $('#search').html($('#quickSearch').html());
+});
+</script>
 
 <div class="question-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <div id="search" class="question-search">
+    </div>
+
+    <?php echo $this->render('_quick_search', ['model' => $searchModel]); ?>
+
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <hr />
 
     <p>
         <?= Html::a(Yii::t('app', 'Create Question'), ['create'], ['class' => 'btn btn-success']) ?>

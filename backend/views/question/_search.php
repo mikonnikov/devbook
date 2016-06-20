@@ -8,21 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<style>
-.question-search {
-    width: 800px;
-    background-color: #c7ddef;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #000;
-}
-#searchtab td {
-    padding: 10px;
-}
-</style>
-
-
-<div class="question-search">
+<div class="question-search" id="extSearch" style="display:none;">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -109,6 +95,6 @@ use yii\widgets\ActiveForm;
 
     <?php ActiveForm::end(); ?>
 
-</div>
+    <p><a class="dotHref" id="myAnswer" onClick="$('#search').html($('#quickSearch').html());"><?=Yii::t('app', 'Quick search')?></a></p>
 
-<hr />
+</div>
