@@ -35,10 +35,11 @@ use yii\widgets\ActiveForm;
                 $form->field($model, 'category_id')->widget(
                     \kartik\select2\Select2::className(),
                     [
-                        'model'     => $model,
-                        'attribute' => 'category_id',
-                        'data'      => \common\models\Category::getCategoriesList(),
-                        'options'   => ['multiple' => false, 'placeholder' => 'Select category']
+                        'model'         => $model,
+                        'attribute'     => 'category_id',
+                        'data'          => \common\models\Category::getCategoriesList(),
+                        'options'       => ['multiple' => false, 'placeholder' => 'Select category', 'id' => 'category_id2'],
+                        'pluginOptions' => [ 'allowClear' => true ]
                     ]
                 )->label(false)
                 ?>
@@ -48,16 +49,17 @@ use yii\widgets\ActiveForm;
                 $form->field($model, 'language_id')->widget(
                     \kartik\select2\Select2::className(),
                     [
-                        'model'     => $model,
-                        'attribute' => 'language_id',
-                        'data'      => \common\models\Language::getLanguagesList(),
-                        'options'   => ['multiple' => false, 'placeholder' => 'Select language']
+                        'model'         => $model,
+                        'attribute'     => 'language_id',
+                        'data'          => \common\models\Language::getLanguagesList(),
+                        'options'       => ['multiple' => false, 'placeholder' => 'Select language', 'id' => 'language_id2'],
+                        'pluginOptions' => [ 'allowClear' => true ]
                     ]
                 )->label(false)
                 ?>
             </td>
             <td valign="top" nowrap="nowrap">
-                <div style="width:200px;">
+                <div style="width:80px; text-align: center;">
                     <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary', 'style' => 'margin-right:10px;']) ?>
                 </div>
             </td>

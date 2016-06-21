@@ -41,7 +41,8 @@ use yii\widgets\ActiveForm;
                         'model'     => $model,
                         'attribute' => 'project_id',
                         'data'      => \common\models\Project::getProjectsList(),
-                        'options'   => ['multiple' => false, 'placeholder' => 'Select project']
+                        'options'   => ['multiple' => false, 'placeholder' => 'Select project'],
+                        'pluginOptions' => [ 'allowClear' => true ]
                     ]
                 )
                 ?>
@@ -53,7 +54,8 @@ use yii\widgets\ActiveForm;
                         'model'     => $model,
                         'attribute' => 'category_id',
                         'data'      => \common\models\Category::getCategoriesList(),
-                        'options'   => ['multiple' => false, 'placeholder' => 'Select category']
+                        'options'   => ['multiple' => false, 'placeholder' => 'Select category'],
+                        'pluginOptions' => [ 'allowClear' => true ]
                     ]
                 )
                 ?>
@@ -65,7 +67,8 @@ use yii\widgets\ActiveForm;
                         'model'     => $model,
                         'attribute' => 'language_id',
                         'data'      => \common\models\Language::getLanguagesList(),
-                        'options'   => ['multiple' => false, 'placeholder' => 'Select language']
+                        'options'   => ['multiple' => false, 'placeholder' => 'Select language'],
+                        'pluginOptions' => [ 'allowClear' => true ]
                     ]
                 )
                 ?>
@@ -77,7 +80,8 @@ use yii\widgets\ActiveForm;
                         'model'     => $model,
                         'attribute' => 'user_id',
                         'data'      => \common\models\User::getUsersList(),
-                        'options'   => ['multiple' => false, 'placeholder' => 'Select user']
+                        'options'   => ['multiple' => false, 'placeholder' => 'Select user'],
+                        'pluginOptions' => [ 'allowClear' => true ]
                     ]
                 )
                 ?>
