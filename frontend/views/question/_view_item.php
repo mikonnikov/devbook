@@ -1,16 +1,10 @@
 <div class="" style="border: solid #CCC 1px; margin: 10px; padding: 10px;">
     <dl class="dl-horizontal">
 
-        <dt><?=Yii::t('app', 'Problem solved?')?></dt>
-        <dd><span><?php echo ($model->solved ? Yii::t('app', 'YES') : Yii::t('app', 'NO')); ?></span></dd>
-
-        <dt><?=Yii::t('app', 'Private question?')?></dt>
-        <dd><span><?php echo ($model->private ? Yii::t('app', 'YES') : Yii::t('app', 'NO')); ?></span></dd>
-
         <?php if(trim($model->title)!=''): ?>
-            <dt><?=Yii::t('app', 'Title')?></dt>
+            <!--dt><?=Yii::t('app', 'Title')?></dt-->
             <dd><span class="text-info">
-                <a href="<?=Yii::$app->urlManager->createUrl(['/questions/view', 'id' => $model->id]);?>">
+                <a href="<?=Yii::$app->urlManager->createUrl(['/questions/view', 'id' => $model->id]);?>" style="font-size:12pt;">
                     <b><?php echo $model->title; ?></b>
                 </a>
             </span></dd>
@@ -52,6 +46,12 @@
                 </a>
             </span></dd>
         <?php endif; ?>
+
+        <dt><?=Yii::t('app', 'Problem solved?')?></dt>
+        <dd><span><?php echo ($model->solved ? Yii::t('app', 'YES') : Yii::t('app', 'NO')); ?></span></dd>
+
+        <dt><?=Yii::t('app', 'Private question?')?></dt>
+        <dd><span><?php echo ($model->private ? Yii::t('app', 'YES') : Yii::t('app', 'NO')); ?></span></dd>
 
         <dt>&nbsp;</dt>
         <dd>
