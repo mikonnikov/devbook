@@ -24,7 +24,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'version',
             'url:url',
-
+            [
+                'label'     => Yii::t('app', 'Questions'),
+                'value'     => function($model) {
+                    return Html::a(count($model->getQuestionsList()), ['/question/index', 'QuestionSearch[language_id]' => $model->id]);
+                },
+                'format'    => 'raw',
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

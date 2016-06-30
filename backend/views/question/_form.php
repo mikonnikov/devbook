@@ -66,7 +66,7 @@ use dosamigos\selectize\SelectizeTextInput;
     )
     ?>
 
-    <?= ($model->user_id ?
+    <?=
     $form->field($model, 'user_id')->widget(
         \kartik\select2\Select2::className(),
         [
@@ -74,8 +74,9 @@ use dosamigos\selectize\SelectizeTextInput;
             'attribute' => 'user_id',
             'data'      => \common\models\User::getUsersList(),
             'options'   => ['multiple' => false, 'placeholder' => 'Select user'],
+            'value'     => (Yii::$app->user->identity ? Yii::$app->user->identity->getId() : '')
         ]
-    ) : $form->field($model, 'user_id')->hiddenInput(['value' => (Yii::$app->user->identity ? Yii::$app->user->identity->getId() : '')])->label(false))
+    )
     ?>
 
     <?= $form->field($model, 'add_time')->hiddenInput(['value' => ($model->isNewRecord ? date("Y-m-d H:i:s") : $model->add_time)])->label(false);  ?>

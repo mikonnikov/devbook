@@ -31,8 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             [
-                'label'     => 'Parent category',
+                'label'     => Yii::t('app', 'Parent category'),
                 'value'     => (isset($model->parent) ? Html::a($model->parent->name . ' ('.$model->parent->id.')', ['/category/view', 'id' => $model->parent_id ]) : '-'),
+                'format'    => 'raw',
+            ],
+            [
+                'label'     => Yii::t('app', 'Questions'),
+                'value'     => Html::a(count($model->getQuestionsList()), ['/question/index', 'QuestionSearch[category_id]' => $model->id]),
                 'format'    => 'raw',
             ],
         ],

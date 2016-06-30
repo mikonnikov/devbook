@@ -80,4 +80,12 @@ class Category extends \yii\db\ActiveRecord
     public function getChilds() {
         return \yii\helpers\ArrayHelper::map(\common\models\Category::find()->where(['parent_id' => $this->id])->all(), 'id', 'name');
     }
+
+    /**
+     * @return array
+     */
+    public function getQuestionsList()
+    {
+        return \yii\helpers\ArrayHelper::map(\common\models\Question::find()->where(['category_id' => $this->id])->all(), 'id', 'title');
+    }
 }

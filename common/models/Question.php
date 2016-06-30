@@ -157,4 +157,5 @@ class Question extends \yii\db\ActiveRecord
     public function getTags()
     {
         return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->viaTable('question_tag', ['question_id' => 'id']);
-    }}
+    }
+}

@@ -231,4 +231,18 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->status = $status;
     }
+
+    /**
+     * Return questions created by user
+     */
+    public function questionsList() {
+        return \yii\helpers\ArrayHelper::map(\common\models\Question::find(['user_id' => $this->getId()])->all(), 'id', 'title');
+    }
+
+    /**
+     * Return answers created by user
+     */
+    public function answersList() {
+        return \yii\helpers\ArrayHelper::map(\common\models\Answer::find(['user_id' => $this->getId()])->all(), 'id', 'title');
+    }
 }

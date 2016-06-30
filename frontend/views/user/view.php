@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?=Yii::t('app', 'User');?> <?= Html::encode($this->title) ?></h1>
 
     <p>
         <?php if($model->status==10): ?>
@@ -39,6 +39,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             'status:boolean',
             'created_at:datetime',
+            [
+                'label' => Yii::t('app', 'Created questions'),
+                'value' => $model->questionsCount(),
+            ],
         ],
     ]) ?>
 

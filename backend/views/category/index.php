@@ -34,10 +34,17 @@ $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['index' ]];
             ],
             [
                 'label'     => 'Child categories',
-                'value' => function($model) {
+                'value'     => function($model) {
                     return Html::a(implode(', ', $model->getChilds()), ['/category', 'parent_id' => $model->id ]);
                 },
-                'format' => 'raw',
+                'format'    => 'raw',
+            ],
+            [
+                'label'     => Yii::t('app', 'Questions'),
+                'value'     => function($model) {
+                    return Html::a(count($model->getQuestionsList()), ['/question/index', 'QuestionSearch[category_id]' => $model->id]);
+                },
+                'format'    => 'raw',
             ],
             ['class' => 'yii\grid\ActionColumn'],
         ],

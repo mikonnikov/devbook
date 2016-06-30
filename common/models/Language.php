@@ -53,4 +53,12 @@ class Language extends \yii\db\ActiveRecord
     {
         return \yii\helpers\ArrayHelper::map(\common\models\Language::find()->all(), 'id', 'name');
     }
+
+    /**
+     * @return array
+     */
+    public function getQuestionsList()
+    {
+        return \yii\helpers\ArrayHelper::map(\common\models\Question::find()->where(['language_id' => $this->id])->all(), 'id', 'name');
+    }
 }
