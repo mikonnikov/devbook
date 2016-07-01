@@ -59,8 +59,16 @@ $ans = $model->getAnswers();
             ],
             'add_time',
             'edit_time',
-            'solved:boolean',
-            'private:boolean',
+            [
+                'label'     => 'Problem solved?',
+                'value'     => ($model->solved ? '<span class=\'glyphicon glyphicon-ok text-success\'></span>' : '<span class=\'glyphicon glyphicon-remove text-danger\'></span>'),
+                'format'    => 'raw',
+            ],
+            [
+                'label'     => 'Private question?',
+                'value'     => ($model->private ? '<span class=\'glyphicon glyphicon-eye-close text-danger\'></span>' : '<span class=\'glyphicon glyphicon-eye-open text-success\'></span>'),
+                'format'    => 'raw',
+            ],
             [
                 'label'     => 'Answers',
                 'value'     => (count($ans) ? Html::a('('.count($ans).'): '.implode(', ', $ans), ['/answer', 'AnswerSearch[question_id]' => $model->id ]) : '-'),

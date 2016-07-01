@@ -48,10 +48,10 @@
         <?php endif; ?>
 
         <dt><?=Yii::t('app', 'Problem solved?')?></dt>
-        <dd><span><?php echo ($model->solved ? Yii::t('app', 'YES') : Yii::t('app', 'NO')); ?></span></dd>
+        <dd><span><?php echo ($model->solved ? '<span class=\'glyphicon glyphicon-ok text-success\' title="'.Yii::t('app', 'YES').'"></span>' : '<span class=\'glyphicon glyphicon-remove text-danger\' title=\''.Yii::t('app', 'NO').'\'></span>'); ?></span></dd>
 
         <dt><?=Yii::t('app', 'Private question?')?></dt>
-        <dd><span><?php echo ($model->private ? Yii::t('app', 'YES') : Yii::t('app', 'NO')); ?></span></dd>
+        <dd><span><?php echo ($model->private ? '<span class=\'glyphicon glyphicon-eye-close text-danger\' title=\''.Yii::t('app', 'YES').'\'></span>' : '<span class=\'glyphicon glyphicon-eye-open text-success\' title=\''.Yii::t('app', 'NO').'\'></span>'); ?></span></dd>
 
         <dt>&nbsp;</dt>
         <dd>

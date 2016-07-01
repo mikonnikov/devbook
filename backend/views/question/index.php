@@ -102,6 +102,14 @@ function shortTitle($str)
                 'format' => 'raw',
             ],
             [
+                'label'     => 'Problem solved',
+                'attribute' => 'solved',
+                'value' => function($model) {
+                    return ($model->solved ? '<span class=\'glyphicon glyphicon-ok text-success\'></span>' : '<span class=\'glyphicon glyphicon-remove text-danger\'></span>');
+                },
+                'format' => 'raw',
+            ],
+            [
                 'label'     => 'Title',
                 'value' => function($model) {
                     return (isset($model->title) ? Html::a(shortTitle($model->title), ['/question/update', 'id' => $model->id ]) : '-');
@@ -117,26 +125,10 @@ function shortTitle($str)
                 'format' => 'raw',
             ],
             [
-                'label'     => 'Problem solved',
-                'attribute' => 'solved',
-                'value' => function($model) {
-                    return ($model->solved ? 'Yes' : 'No');
-                },
-                'format' => 'raw',
-            ],
-            [
                 'label'     => 'Private question',
                 'attribute' => 'private',
                 'value' => function($model) {
-                    return ($model->private ? 'Yes' : 'No');
-                },
-                'format' => 'raw',
-            ],
-            [
-                'label'     => 'Private question',
-                'attribute' => 'private',
-                'value' => function($model) {
-                    return ($model->private ? 'Yes' : 'No');
+                    return ($model->private ? '<span class=\'glyphicon glyphicon-eye-close text-danger\'></span>' : '<span class=\'glyphicon glyphicon-eye-open text-success\'></span>');
                 },
                 'format' => 'raw',
             ],
