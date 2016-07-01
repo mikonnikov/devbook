@@ -37,6 +37,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'format' => 'raw',
             ],
+            [
+                'label'     => Yii::t('app', 'Questions'),
+                'value'     => function($model) {
+                    return Html::a(count($model->questionsList()), ['/question/index', 'QuestionSearch[user_id]' => $model->id, 'ext_search' => 1]);
+                },
+                'format'    => 'raw',
+            ],
+            [
+                'label'     => Yii::t('app', 'Answers'),
+                'value'     => function($model) {
+                    return Html::a(count($model->answersList()), ['/answer/index', 'AnswerSearch[user_id]' => $model->id]);
+                },
+                'format'    => 'raw',
+            ],
             'created_at:datetime',
             'updated_at:datetime',
             ['class' => 'yii\grid\ActionColumn'],

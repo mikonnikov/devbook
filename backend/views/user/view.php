@@ -37,6 +37,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'status:boolean',
             'created_at:datetime',
             'updated_at:datetime',
+            [
+                'label'     => Yii::t('app', 'Questions'),
+                'value'     => Html::a(count($model->questionsList()), ['/question/index', 'QuestionSearch[user_id]' => $model->id, 'ext_search' => 1]),
+                'format'    => 'raw',
+            ],
+            [
+                'label'     => Yii::t('app', 'Answers'),
+                'value'     => Html::a(count($model->answersList()), ['/answer/index', 'AnswerSearch[user_id]' => $model->id]),
+                'format'    => 'raw',
+            ],
         ],
     ]) ?>
 
