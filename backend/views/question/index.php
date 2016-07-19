@@ -112,7 +112,7 @@ function shortTitle($str)
             [
                 'label'     => 'Title',
                 'value' => function($model) {
-                    return (isset($model->title) ? Html::a(shortTitle($model->title), ['/question/update', 'id' => $model->id ]) : '-');
+                    return (isset($model->title) ? "<span title='".htmlspecialchars($model->title)."'>".Html::a(shortTitle($model->title), ['/question/update', 'id' => $model->id ])."</span>" : '-');
                 },
                 'format' => 'raw',
             ],
